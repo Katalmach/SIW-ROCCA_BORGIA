@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head
+	th:replace="fragments/base.html :: headerfiles(title=#{title.formCampo})">
+</head>
+<body>
+	<header th:replace="fragments/base.html :: intestazione"></header>
+	<div>
+		<h4>Inserisci i dati di un campo</h4>
+	</div>
+	<form  th:action="@{/admin/campo}" method="POST" th:object="${campo}">
+		<div th:if="${#fields.hasGlobalErrors()}">
+			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+		</div>
+		<div>
+			<div>
+				<span>Matricola:</span> <span><input type="text"
+					th:field="*{matricola}" /></span> <span
+					th:if="${#fields.hasErrors('matricola')}" th:errors="*{matricola}"></span>
+			</div>
+			<div>
+				<span>Descrizione:</span> <span><input type="text"
+					th:field="*{descrizione}" /></span> <span
+					th:if="${#fields.hasErrors('descrizione')}"
+					th:errors="*{descrizione}"></span>
+			</div>
+
+		</div>
+		<div>
+			<span>PrezzoOrario:</span> <span><input type="text"
+				th:field="*{prezzoOrario}" /></span> <span
+				th:if="${#fields.hasErrors('prezzoOrario')}"
+				th:errors="*{prezzoOrario}"></span>
+		</div>
+		<div>
+		<input type="checkbox" th:field="*{disponibilita}">
+  <label> Disponibile</label><br>
+				
+		</div>
+		
+		<!--	<div>
+			<span>Sport:  </span>
+			<select  th:field="*{sport}">
+				<option th:each= "sport :${sports}"
+						th:value= "${sport.id}"
+						th:text= "${sport.nome}" >
+				</select>
+	
+		</div> --> 
+		
+		<div>
+			<span>Sport:  </span>
+			<select  th:field="*{sport}">
+				<option value=6>Basket</option>
+				<option value=7>Tennis</option>
+				<option value=8>Calcio a 5</option>
+				<option value=9>Pallavolo</option>
+			</select>
+	
+		</div>
+		<div>
+			<span><button type="submit">Invio</button></span>
+		</div>
+	</form>
+	<footer th:replace="fragments/base.html :: fondo('/default')"></footer>
+</body>
+</html>

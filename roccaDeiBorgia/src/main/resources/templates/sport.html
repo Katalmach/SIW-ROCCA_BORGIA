@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="fragments/base.html :: headerfiles(title=#{pageTitle.sport})"> </head>
+<body>
+	<header th:replace="fragments/base.html :: intestazione"></header>
+    <div>
+    	<h4 th:text="#{header.sport}">...</h4>
+    	<div th:if="${sport}" th:object="${sport}">
+    	
+			<h5 th:text="*{nome}">nome</h5>
+			<span>ID sport: </span>
+			<span th:text="*{id}"></span>
+			<div></div>
+			<span>Numero giocatori max: </span>
+			<span th:text="*{numGiocatoriMax}">numero giocatori </span>
+			
+   		</div>
+    	<div th:unless="${sport}">Questo sport non esiste</div>
+    </div>
+    <footer th:replace="fragments/base.html :: fondo('/default')"></footer>
+</body>
+</html>

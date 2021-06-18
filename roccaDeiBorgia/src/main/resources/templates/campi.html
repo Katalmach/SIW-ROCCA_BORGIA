@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title=#{header.campi})"> </head>
+<body>
+	<header th:replace="fragments/base.html :: intestazione"></header>
+	<div>
+    	<h4 th:text="#{header.campi}">Lista dei campi</h4>
+		<ul>
+			<li th:each="campo : ${campi}">
+				<a href="campo.html" 
+				   th:href="@{'/campo' + '/' + ${campo.id}}" 
+				   th:text="${campo.matricola}">EsternoA1</a>
+			</li>
+		</ul>
+	</div>
+	<footer th:replace="fragments/base.html :: fondo('/default')"></footer>
+</body>
+</html>

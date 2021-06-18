@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="fragments/base.html :: headerfiles(title=#{header.sports})"> </head>
+<body>
+	<header th:replace="fragments/base.html :: intestazione"></header>
+	<div>
+    	<h4 th:text="#{header.sports}">Lista degli sport</h4>
+		<ul>
+			<li th:each="sport : ${sports}">
+				<a href="sport.html" 
+				   th:href="@{'/sport' + '/' + ${sport.id}}" 
+				   th:text="${sport.nome}">Basket</a>
+			</li>
+		</ul>
+	</div>
+	<footer th:replace="fragments/base.html :: fondo('/default')"></footer>
+</body>
+</html>

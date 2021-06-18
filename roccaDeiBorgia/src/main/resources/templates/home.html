@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="fragments/base.html :: headerfiles(title='Rocca Borgia')"> </head>
+<body>
+	<header th:replace="fragments/base.html :: intestazione"></header>
+    <div>
+    	<h4 th:text="#{header.menuUtente}">Menu</h4>
+		<div>
+			<a th:href="@{/campo}">Elenco campi</a>
+   		</div>
+   		
+   		<div>
+			<a th:href="@{/prenotazione}">Effettua prenotazione</a>
+   		</div>
+   
+   		<div>
+			<a th:href="@{/logout}">Logout</a>
+   		</div>
+   		
+    </div>
+    <footer th:replace="fragments/base.html :: fondo(home='/default')"></footer>
+</body>
+</html>
