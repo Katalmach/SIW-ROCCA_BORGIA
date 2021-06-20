@@ -5,9 +5,10 @@
 	<header th:replace="fragments/base.html :: intestazione"></header>
     <div>
     	<h4 th:text="#{header.menuUtente}">Menu</h4>
-    	<!-- home, inserire immagini, pagina  -->
+    	<!-- home, inserire immagini, pagina di info e pagina admin per
+    	customizzare le prenotazioni(per eliminare quelle passate principalmente)  -->
    		<div>
-			<a th:href="@{/prenotazione}">Effettua prenotazione</a>
+			<a th:href="@{/addPrenotazione}">Effettua prenotazione</a>
    		</div>
    		
     </div>

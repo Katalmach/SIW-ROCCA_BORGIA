@@ -7,9 +7,9 @@
 	<header th:replace="fragments/base.html :: intestazione"> </header>
 	<div>
 		<p> Effettua una prenotazione </p>
-		<form th:action="{/prenotazione}" method="POST" th:object="${prenotazione}">
-		<div if="${#fields.hasGlobalErrors()}">
-			<p th:each="{err : ${#fields.hasGlobalErrors()}}" th:text="${err}"></p>
+		<form th:action="@{/addPrenotazione}" method="POST" th:object="${prenotazione}">
+		<div th:if="${#fields.hasGlobalErrors()}">
+			<p th:each="err : ${#fields.hasGlobalErrors()}" th:text="${err}"></p>
 		</div>
 		
 		<div>
@@ -20,12 +20,13 @@
 			
 		<div>
 			<span>Ora:<input type="text" th:field="*{ora}"/></span>
-			<span th:if="${#fields.hasErrors('ora')" th:error="*{ora}"></span>
+			<span th:if="${#fields.hasErrors('ora')}" th:error="*{ora}"></span>
+			<span>Questo valore deve essere compreso tra 9 e 22</span>
 		</div>
 		
 		<div><span>Campo:</span>
 			<select name="campoScelto">
-			<option th:each="{campo : campi}" th:value="*{id}" th:text="|*{sport.nome}&nbsp;*{matricola}|"></select>		
+			<option th:each="campo : ${campi}" th:value="*{id}" th:text="|*{sport.nome}&nbsp;*{matricola}|"></select>		
 		</div>
 		
 		<span><button type="submit">Prenota</button></span> 
