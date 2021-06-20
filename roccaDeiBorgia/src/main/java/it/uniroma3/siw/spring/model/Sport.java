@@ -23,16 +23,16 @@ public class Sport {
 	private int numGiocatoriMax;
 
 	@OneToMany(mappedBy="sport")
-	private List<Campo> campo;
+	private List<Campo> campi;
 
 
 
-	public List<Campo> getCampo() {
-		return campo;
+	public List<Campo> getCampi() {
+		return campi;
 	}
 
-	public void setCampo(List<Campo> campo) {
-		this.campo = campo;
+	public void setCampi(List<Campo> campi) {
+		this.campi = campi;
 	}
 
 

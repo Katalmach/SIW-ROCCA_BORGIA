@@ -33,10 +33,10 @@ public class CredentialsService {
 		
     @Transactional
     public Credentials saveCredentials(Credentials credentials) {
-    	if(credentials.getUsername().equals("ALESSIO")&& credentials.getPassword().equals("ALESSIO")) {
+    	if(credentials.getUsername().equals("ALESSIO")&& credentials.getPassword().equals("ALESSIO"))
     	      credentials.setRole(Credentials.ADMIN_ROLE);	
-    	}
-        credentials.setRole(Credentials.DEFAULT_ROLE);
+    	else
+    		credentials.setRole(Credentials.DEFAULT_ROLE);
         credentials.setPassword(this.passwordEncoder.encode(credentials.getPassword()));
         return this.credentialsRepository.save(credentials);
     }

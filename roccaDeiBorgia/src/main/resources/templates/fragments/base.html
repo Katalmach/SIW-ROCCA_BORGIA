@@ -1,14 +1,29 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="headerfiles(title)">
-	<meta charset="UTF-8" />
-	<link th:href="@{/css/base.css}" rel="stylesheet">
-	<title th:text="${title}"></title>
+<meta charset="UTF-8" />
+<link th:href="@{/css/base.css}" rel="stylesheet">
+<title th:text="${title}"></title>
 </head>
 <body>
-	<header th:fragment="intestazione">
-		<h1>Rocca dei Borgia</h1>
-	</header>
+
+
+	<header th:fragment ="intestazione">
+		<span> 	
+		<a th:href="@{/default}">Rocca dei Borgia</a>
+		 
+		</span>
+			<ul>
+			<li><a th:href="@{/campo}">Campi</a></li>
+			<li><a th:href="@{/prenotazioni}">Prenotazioni</a></li>
+			<li><a th:href="@{/logout}">Logout</a></li>
+		</ul>
+	</header>	
+	
+	
+</body>
+</html>
+
 
 	<footer th:fragment="fondo(home)">
 		<a th:href="@{${home}}">Home</a>

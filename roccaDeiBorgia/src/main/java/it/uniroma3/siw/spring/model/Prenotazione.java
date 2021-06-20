@@ -1,6 +1,6 @@
 package it.uniroma3.siw.spring.model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,17 +11,17 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class PrenotazioneCampo {
+public class Prenotazione {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
 	@Column(nullable=false)
-
-	private LocalDateTime dataInizio;
+	private LocalDate giorno;
+	
 	@Column(nullable=false)
-	private LocalDateTime dataFine;
+	private int ora;
 
 	@ManyToOne()
 	private Campo campo;
@@ -53,19 +53,20 @@ public class PrenotazioneCampo {
 		this.id = id;
 	}
 
-	public LocalDateTime getDataInizio() {
-		return dataInizio;
+	public LocalDate getGiorno() {
+		return giorno;
 	}
 
-	public void setDataInizio(LocalDateTime dataInizio) {
-		this.dataInizio = dataInizio;
+	public void setGiorno(LocalDate giorno) {
+		this.giorno = giorno;
 	}
 
-	public LocalDateTime getDataFine() {
-		return dataFine;
+	public int getOra() {
+		return ora;
 	}
 
-	public void setDataFine(LocalDateTime dataFine) {
-		this.dataFine = dataFine;
+	public void setOra(int ora) {
+		this.ora = ora;
 	}
+
 }

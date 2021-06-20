@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.siw.spring.controller.validator.CampoValidator;
 import it.uniroma3.siw.spring.model.Campo;
 import it.uniroma3.siw.spring.service.CampoService;
+import it.uniroma3.siw.spring.service.SportService;
 
 @Controller
 public class CampoController {
@@ -23,10 +25,14 @@ public class CampoController {
 	
     @Autowired
     private CampoValidator campoValidator;
+
+    @Autowired
+	private SportService sportService;
         
     @RequestMapping(value="/admin/campo", method = RequestMethod.GET)
     public String addCampo(Model model) {
     	model.addAttribute("campo", new Campo());
+    	model.addAttribute("sports", this.sportService.tutti());
         return "campoForm";
     }
 
@@ -44,13 +50,15 @@ public class CampoController {
     
     @RequestMapping(value = "/admin/campo", method = RequestMethod.POST)
     public String addCampo(@ModelAttribute("campo") Campo campo, 
-    									Model model, BindingResult bindingResult) {
+    									Model model, @RequestParam Long sportSelezionato, BindingResult bindingResult) {
     	this.campoValidator.validate(campo, bindingResult);
         if (!bindingResult.hasErrors()) {
+        	campo.setSport(this.sportService.sportPerId(sportSelezionato));
         	this.campoService.inserisci(campo);
             model.addAttribute("campi", this.campoService.tutti());
             return "campi";
         }
         return "campoForm";
+     
     }
 }

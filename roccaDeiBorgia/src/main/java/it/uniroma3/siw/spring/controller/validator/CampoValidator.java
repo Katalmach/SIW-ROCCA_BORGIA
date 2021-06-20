@@ -23,9 +23,7 @@ public class CampoValidator implements Validator {
 	@Override
 	public void validate(Object o, Errors errors) {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "matricola", "required");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "descrizione", "required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "prezzoOrario", "required");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "disponibilita", "required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "sport", "required");
 		
 		if (!errors.hasErrors()) {

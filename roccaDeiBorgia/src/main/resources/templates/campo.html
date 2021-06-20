@@ -1,19 +1,33 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-	<head th:replace="fragments/base.html :: headerfiles(title=#{pageTitle.campo})"> </head>
+<head
+	th:replace="fragments/base.html :: headerfiles(title=#{title.campo})">
+</head>
 <body>
 	<header th:replace="fragments/base.html :: intestazione"></header>
-    <div>
-    	<h4 th:text="#{header.campo}">...</h4>
-    	<div th:if="${campo}" th:object="${campo}">
-			<h5 th:text="*{matricola}">matricola</h5>
-			<span th:text="*{descrizione}">descrizione </span>
-			<span th:text="*{disponibilita}">disponibilita </span>
-			<span th:text="*{prezzoOrario}">prezzoOrario </span>
-			<span th:text="*{sport.nome}">Sport</span>
-   		</div>
-    	<div th:unless="${campo}">Questo campo non esiste</div>
-    </div>
-    <footer th:replace="fragments/base.html :: fondo('/default')"></footer>
+	<div>
+		<h4 th:text="#{header.campo}"></h4>
+		<div th:if="${campo}" th:object="${campo}">
+			<div>
+				Matricola: <span th:text="*{matricola}"></span>
+			</div>
+
+			<div>
+				Descrizione: <span th:text="*{descrizione}"></span>
+			</div>
+
+			<div>
+				Prezzo orario: <span th:text="*{prezzoOrario}"></span>
+			</div>
+
+			<div>
+				Sport: <span th:text="*{sport.nome}"></span>
+			</div>
+
+
+		</div>
+		<div th:unless="${campo}">Questo campo sportivo non esiste</div>
+	</div>
+	<footer th:replace="fragments/base.html :: fondo('/default')"></footer>
 </body>
 </html>

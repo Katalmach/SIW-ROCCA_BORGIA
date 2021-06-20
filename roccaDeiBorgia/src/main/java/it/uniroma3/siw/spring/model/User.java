@@ -54,14 +54,14 @@ public class User {
 	private String password;
 
 	@OneToMany(mappedBy="user")
-	private List<PrenotazioneCampo> prenotazioni;
+	private List<Prenotazione> prenotazioni;
 
 
-	public List<PrenotazioneCampo> getPrenotazioni() {
+	public List<Prenotazione> getPrenotazioni() {
 		return prenotazioni;
 	}
 
-	public void setPrenotazioni(List<PrenotazioneCampo> prenotazioni) {
+	public void setPrenotazioni(List<Prenotazione> prenotazioni) {
 		this.prenotazioni = prenotazioni;
 	}
 

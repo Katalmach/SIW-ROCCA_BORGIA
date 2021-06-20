@@ -9,7 +9,7 @@
 			<li th:each="campo : ${campi}">
 				<a href="campo.html" 
 				   th:href="@{'/campo' + '/' + ${campo.id}}" 
-				   th:text="${campo.matricola}">EsternoA1</a>
+				   th:text="|${campo.matricola}-${campo.sport.nome}|">EsternoA1</a>
 			</li>
 		</ul>
 	</div>

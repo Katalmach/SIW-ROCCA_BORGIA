@@ -8,7 +8,7 @@
 	<div>
 		<h4>Inserisci i dati di un campo</h4>
 	</div>
-	<form  th:action="@{/admin/campo}" method="POST" th:object="${campo}">
+	<form th:action="@{/admin/campo}" method="POST" th:object="${campo}">
 		<div th:if="${#fields.hasGlobalErrors()}">
 			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
 		</div>
@@ -32,32 +32,18 @@
 				th:if="${#fields.hasErrors('prezzoOrario')}"
 				th:errors="*{prezzoOrario}"></span>
 		</div>
-		<div>
-		<input type="checkbox" th:field="*{disponibilita}">
-  <label> Disponibile</label><br>
-				
-		</div>
-		
-		<!--	<div>
-			<span>Sport:  </span>
-			<select  th:field="*{sport}">
-				<option th:each= "sport :${sports}"
-						th:value= "${sport.id}"
-						th:text= "${sport.nome}" >
-				</select>
-	
-		</div> --> 
-		
-		<div>
-			<span>Sport:  </span>
-			<select  th:field="*{sport}">
-				<option value=6>Basket</option>
-				<option value=7>Tennis</option>
-				<option value=8>Calcio a 5</option>
-				<option value=9>Pallavolo</option>
+
+	  	<div>
+			<span>Sport:</span> <select name="sportSelezionato">
+				<option th:each="sport : ${sports}" th:value="${sport.id}"
+					th:text="${sport.nome}">
 			</select>
-	
-		</div>
+		</div> 
+		
+		  <div>
+				<span>Immagine:</span> <input style="color:white;" type="file" th:field="*{image}"
+					accept="image/gif, image/jpeg, image/png"> 			</div>
+		
 		<div>
 			<span><button type="submit">Invio</button></span>
 		</div>

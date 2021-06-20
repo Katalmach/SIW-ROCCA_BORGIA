@@ -64,6 +64,7 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter {
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 // il logout è attivato con una richiesta GET a "/logout"
                 .logoutUrl("/logout")
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 // in caso di successo, si viene reindirizzati alla /index page
                 .logoutSuccessUrl("/index")        
                 .invalidateHttpSession(true)

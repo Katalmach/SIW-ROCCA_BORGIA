@@ -22,13 +22,13 @@ public class Campo {
 
 	private String image;
 	
-	public boolean isDisponibilita() {
-		return disponibilita;
-	}
+	@ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE})
+	private Sport sport;
 
-	public void setDisponibilita(boolean disponibilita) {
-		this.disponibilita = disponibilita;
-	}
+	@OneToMany(mappedBy ="campo")
+	private List<Prenotazione> prenotazioni;
+
+	//getters & setters
 
 	public String getMatricola() {
 		return matricola;
@@ -46,12 +46,6 @@ public class Campo {
 
 	@Column(nullable=false)
 	private float prezzoOrario;
-
-	@ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.REMOVE})
-	private Sport sport;
-
-	@OneToMany(mappedBy ="campo")
-	private List<PrenotazioneCampo> prenotazioni;
 
 	public long getId() {
 		return id;
@@ -86,11 +80,11 @@ public class Campo {
 		this.sport = sport;
 	}
 
-	public List<PrenotazioneCampo> getPrenotazioni() {
+	public List<Prenotazione> getPrenotazioni() {
 		return prenotazioni;
 	}
 
-	public void setPrenotazioni(List<PrenotazioneCampo> prenotazioni) {
+	public void setPrenotazioni(List<Prenotazione> prenotazioni) {
 		this.prenotazioni = prenotazioni;
 	}
 
