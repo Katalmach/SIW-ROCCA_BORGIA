@@ -23,9 +23,6 @@ public class PrenotazioneValidator implements Validator {
 
 	@Override
 	public void validate(Object o, Errors errors) {
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors,"giorno" ,"required");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors,"ora" , "required");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors,"campo" , "required");
 		
 		
 		if(!errors.hasErrors()) {

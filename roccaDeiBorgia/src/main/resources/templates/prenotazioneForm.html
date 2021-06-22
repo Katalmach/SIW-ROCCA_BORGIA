@@ -5,32 +5,44 @@
 </head>
 <body>
 	<header th:replace="fragments/base.html :: intestazione"> </header>
+
+
 	<div>
-		<p> Effettua una prenotazione </p>
-		<form th:action="@{/addPrenotazione}" method="POST" th:object="${prenotazione}">
-		<div th:if="${#fields.hasGlobalErrors()}">
-			<p th:each="err : ${#fields.hasGlobalErrors()}" th:text="${err}"></p>
-		</div>
-		
-		<div>
-			<span>Giorno:<input
-					type="date" th:field="*{giorno}" /></span> <span
+		<p>Effettua una prenotazione</p>
+		<form th:action="@{/addPrenotazione}" method="POST"
+			th:object="${prenotazione}">
+			<div th:if="${#fields.hasGlobalErrors()}">
+				<p th:each="err : ${#fields.hasGlobalErrors()}" th:text="${err}"></p>
+			</div>
+
+
+			<div>Campo:
+			<select class="form-select-lg mb-3"
+				aria-label=".form-select-sm" name="campoSelezionato">
+			
+				<option th:each="campo : ${campi}" th:value="${campo.id}"
+						th:text="|${campo.sport.nome}&nbsp;${campo.matricola}|">
+				</select>	
+			</div>
+			<div class="mb-4">
+				Giorno: <label for="exampleFormControlInput1" class="form-label"></label>
+				<input type="date" th:field="*{giorno}" class="form-control-sm"
+					id="exampleFormControlInput1"> <span
 					th:if="${#fields.hasErrors('giorno')}" th:errors="*{giorno}"></span>
 			</div>
-			
-		<div>
-			<span>Ora:<input type="text" th:field="*{ora}"/></span>
-			<span th:if="${#fields.hasErrors('ora')}" th:error="*{ora}"></span>
-			<span>Questo valore deve essere compreso tra 9 e 22</span>
-		</div>
-		
-		<div><span>Campo:</span>
-			<select name="campoScelto">
-			<option th:each="campo : ${campi}" th:value="*{id}" th:text="|*{sport.nome}&nbsp;*{matricola}|"></select>		
-		</div>
-		
-		<span><button type="submit">Prenota</button></span> 
+
+			<div class="mb-4">
+				Ora: <label for="exampleFormControlInput1" class="form-label"></label>
+				<input type="text" th:field="*{ora}" class="form-control-sm"
+					id="exampleFormControlInput1"> <span
+					th:if="${#fields.hasErrors('giorno')}" th:errors="*{giorno}">
+				</span> <span>Questo valore deve essere compreso tra 9 e 22</span>
+			</div>
+
+
+
+			<span><button type="submit">Prenota</button></span>
 		</form>
-	</div> 
+	</div>
 </body>
 </html>

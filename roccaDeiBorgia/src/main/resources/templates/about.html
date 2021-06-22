@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title=#{title.custodi})"> </head>
+<body>
+	<header th:replace="fragments/base.html :: intestazione"></header>
+	<div>
+		<h3>Centro Polisportivo</h3>
+		<h3>Rocca dei Borgia</h3>
+    	<h4 th:text="#{header.custodi}"></h4>
+		<ul>
+			<li th:each="custode : ${custodi}">
+				<a  
+				   th:href="@{'/custode' + '/' + ${custode.id}}" 
+				   th:text="|${custode.nome} &nbsp; ${custode.cognome}|"></a>
+			</li>
+		</ul>
+	</div>
+	<footer th:replace="fragments/base.html :: fondo('/default')"></footer>
+</body>
+</html>

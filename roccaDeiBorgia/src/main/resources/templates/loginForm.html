@@ -1,26 +1,28 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/base.html :: headerfiles(title='Login')"> </head>
-<body>
+<body class="text-center">
 	<header th:replace="fragments/base.html :: intestazione"></header>
-	<div>
-		<h4>Login</h4>
-	</div>
-	<form th:action="@{/login}" method="POST">
-		<div>
-			<div>
-				<span>Username:</span>
-				<span><input name="username" type="text" required /></span>
-			</div>		
-			<div>
-				<span>Password:</span>
-				<span><input name="password" type="password" required /></span>
-			</div>
-			<div>
-				<span><button type="submit">Login</button></span>
-			</div>
-		</div>
-	</form>
-    <footer th:replace="fragments/base.html :: fondo(home='/')"></footer>
-</body>
-</html>
+	
+	
+    
+<main class="form-signin-sm " >
+  <form th:action="@{/login}" method="POST">
+    <img class="mb-2" th:src="@{/images/logoNepiFinal.jpg}" alt="" width="13%" height="16%">
+    <h1 class="h3 mb-2 fw-normal">Effettua il login</h1>
+
+    <div class="form-floating-sm mb-3">
+      <input type="text" class="form-control-md" id="floatingInput" name="username" placeholder="Username"required>
+      <label for="floatingInput"></label>
+    </div>
+    
+    <div class="form-floating-sm mb-3">
+      <input type="password" class="form-control-md" id="floatingPassword" name="password" placeholder="Password" required>
+      <label for="floatingPassword"></label>
+    </div>
+
+    <button class="mt-1 w-10 btn btn-lg btn-primary" type="submit">Accedi</button>
+    
+  </form>
+</main>
+

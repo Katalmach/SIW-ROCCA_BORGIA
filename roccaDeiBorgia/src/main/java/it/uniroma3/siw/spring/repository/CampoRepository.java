@@ -17,6 +17,4 @@ public interface CampoRepository extends CrudRepository<Campo, Long>{
 
 	public List<Campo> findBySportAndPrezzoOrario(Sport sport, float prezzoOrario);
 	
-	public List<Campo> findByPrezzoOrarioAndDisponibilita(float prezzoOrario, boolean disponibilita);
-
 }

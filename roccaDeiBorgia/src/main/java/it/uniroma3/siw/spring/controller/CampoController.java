@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import it.uniroma3.siw.spring.controller.validator.CampoValidator;
 import it.uniroma3.siw.spring.model.Campo;
 import it.uniroma3.siw.spring.service.CampoService;
+import it.uniroma3.siw.spring.service.CustodeService;
 import it.uniroma3.siw.spring.service.SportService;
 
 @Controller
@@ -28,11 +29,15 @@ public class CampoController {
 
     @Autowired
 	private SportService sportService;
+
+    @Autowired
+	private CustodeService custodeService;
         
     @RequestMapping(value="/admin/campo", method = RequestMethod.GET)
     public String addCampo(Model model) {
     	model.addAttribute("campo", new Campo());
     	model.addAttribute("sports", this.sportService.tutti());
+    	model.addAttribute("custodi", this.custodeService.tutti());
         return "campoForm";
     }
 
@@ -48,12 +53,19 @@ public class CampoController {
     		return "campi";
     }
     
+    @RequestMapping(value = "/eliminaCampo/{id}", method = RequestMethod.GET)
+    public String eliminaCampo(@PathVariable("id")Long id, Model model) {
+    	this.campoService.elimina(this.campoService.campoPerId(id));
+    	model.addAttribute("custodi", this.campoService.tutti());
+    	return "custodi";
+    }
+    
     @RequestMapping(value = "/admin/campo", method = RequestMethod.POST)
     public String addCampo(@ModelAttribute("campo") Campo campo, 
     									Model model, @RequestParam Long sportSelezionato, BindingResult bindingResult) {
+    	campo.setSport(this.sportService.sportPerId(sportSelezionato));
     	this.campoValidator.validate(campo, bindingResult);
         if (!bindingResult.hasErrors()) {
-        	campo.setSport(this.sportService.sportPerId(sportSelezionato));
         	this.campoService.inserisci(campo);
             model.addAttribute("campi", this.campoService.tutti());
             return "campi";

@@ -9,6 +9,10 @@
 		<h4 th:text="#{header.campo}"></h4>
 		<div th:if="${campo}" th:object="${campo}">
 			<div>
+				<img th:src="@{'/images/'+*{image}}">
+			</div>
+		
+			<div>
 				Matricola: <span th:text="*{matricola}"></span>
 			</div>
 
@@ -23,7 +27,10 @@
 			<div>
 				Sport: <span th:text="*{sport.nome}"></span>
 			</div>
-
+			
+			<div>
+				Custode: <span th:text="!*{custode.nome}&nbsp;*{custode.cognome}|"></span>
+			</div>
 
 		</div>
 		<div th:unless="${campo}">Questo campo sportivo non esiste</div>

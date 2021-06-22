@@ -1,59 +1,47 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head
-	th:replace="fragments/base.html :: headerfiles(title=#{title.formCampo})">
+	th:replace="fragments/base.html :: headerfiles(title=#{title.prenotazione})">
 </head>
 <body>
 	<header th:replace="fragments/base.html :: intestazione"></header>
-	<div>
-		<h4>Inserisci i dati di un campo</h4>
-	</div>
-	<form  th:action="@{/admin/campo}" method="POST" th:object="${campo}">
-		<div th:if="${#fields.hasGlobalErrors()}">
-			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
-		</div>
-		<div>
-			<div>
-				<span>Matricola:</span> <span><input type="text"
-					th:field="*{matricola}" /></span> <span
-					th:if="${#fields.hasErrors('matricola')}" th:errors="*{matricola}"></span>
-			</div>
-			<div>
-				<span>Descrizione:</span> <span><input type="text"
-					th:field="*{descrizione}" /></span> <span
-					th:if="${#fields.hasErrors('descrizione')}"
-					th:errors="*{descrizione}"></span>
-			</div>
+		<h4 th:text="#{header.prenotazione}">...</h4>
+		<div th:if="${prenotazione}" th:object="${prenotazione}">
+
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">Utente</th>
+						<th scope="col">ID prenotazione</th>
+						<th scope="col">Codice documento</th>
+						<th scope="col">Giorno</th>
+						<th scope="col">Ora</th>
+						<th scope="col">Campo</th>
+						<th scope="col">Custode</th>
+						<th scope="col">Importo da pagare</th>
+
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+		
+						<td th:text="|*{user.nome}&nbsp;*{user.cognome}|"></td>
+						<td th:text="*{id}"></td>
+						<td th:text="*{user.numCI}"></td>
+						<td th:text="*{giorno}"></td>
+						<td th:text="*{ora}"></td>
+						<td th:text="|*{campo.matricola}&nbsp;*{campo.sport.nome}|"></td>
+						<td th:text="|*{campo.custode.nome}&nbsp;*{campo.custode.cognome}|"></td>
+						<td th:text="|*{campo.prezzoOrario}0&nbsp;&euro;|"></td>
+					</tr>
+				</tbody>
+			</table>
 
 		</div>
-		<div>
-			<span>PrezzoOrario:</span> <span><input type="text"
-				th:field="*{prezzoOrario}" /></span> <span
-				th:if="${#fields.hasErrors('prezzoOrario')}"
-				th:errors="*{prezzoOrario}"></span>
-		</div>
-		<div>
-		<input type="checkbox" th:field="*{disponibilita}">
-  <label> Disponibile</label><br>
-				
-		</div>
-		
-	
-		
-		<div>
-			<span>Sport:  </span>
-			<select  th:field="*{sport}">
-				<option value=6>Basket</option>
-				<option value=7>Tennis</option>
-				<option value=8>Calcio a 5</option>
-				<option value=9>Pallavolo</option>
-			</select>
-	
-		</div>
-		<div>
-			<span><button type="submit">Invio</button></span>
-		</div>
-	</form>
-	<footer th:replace="fragments/base.html :: fondo('/default')"></footer>
+		<div th:unless="${prenotazione}">Questa prenotazione non esiste
+			piu'</div>
+
+		<footer th:replace="fragments/base.html :: fondo('/default')"></footer>
 </body>
 </html>

@@ -4,9 +4,9 @@
 <body>
 	<header th:replace="fragments/base.html :: intestazione"></header>
 	<div>
-    	<h4 th:text="#{header.campi}">Lista dei campi</h4>
-		<ul>
-			<li th:each="campo : ${campi}">
+    	<h4 style="text-align:center;" th:text="#{header.campi}">Lista dei campi</h4>
+		<ul class="list-group m-4" style="align-items:center;">
+		<li class="list-group-item list-group-item-action m-3 border"  style="text-align:center;X"th:each="campo : ${campi}">
 				<a href="campo.html" 
 				   th:href="@{'/campo' + '/' + ${campo.id}}" 
 				   th:text="|${campo.matricola}-${campo.sport.nome}|">EsternoA1</a>

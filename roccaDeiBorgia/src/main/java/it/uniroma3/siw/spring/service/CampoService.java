@@ -44,4 +44,9 @@ public class CampoService {
 		else 
 			return false;
 	}
+
+	@Transactional
+	public void elimina(Campo campo) {
+		this.campoRepository.delete(campo);
+	}
 }

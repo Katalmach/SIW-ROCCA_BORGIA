@@ -15,10 +15,17 @@ public interface PrenotazioneRepository extends CrudRepository<Prenotazione,Long
 
 	public List<Prenotazione> findByGiornoAndOra(LocalDate giorno, int ora);
 
+	
+	@Query("FROM Prenotazione WHERE campo=?1 ORDER BY giorno, ora ASC")
 	public List<Prenotazione> findByCampo(Campo campo);
 
+	@Query("FROM Prenotazione WHERE user=?1 ORDER BY giorno, ora ASC " )
 	public List<Prenotazione> findByUser(User user);
 
+	@Override
 	@Query("FROM Prenotazione ORDER BY giorno, ora ASC")
+	public List<Prenotazione> findAll();
+	
+	
 	public Optional<Prenotazione> findByGiornoAndOraAndCampo(LocalDate giorno, int ora, Campo campo);
 }

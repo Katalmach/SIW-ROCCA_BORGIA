@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head
+	th:replace="fragments/base.html :: headerfiles(title='Rocca Borgia')">
+</head>
+<body>
+	<header th:replace="fragments/base.html :: intestazione"></header>
+	<div>
+	
+	<h4 class="m-3"style="text-align:center">Controlla le prenotazioni</h4>
+<ul class="list-group m-5">
+  <li class="list-group-item mb-4 border"><a style="text-decoration:none" th:href="@{/prenotazioniUtente}">Guarda le tue prenotazioni</a>
+  </li>
+  <li class="list-group-item mb-4 border" th:each="campo :${campi}" th:value="${campo.id}"><a style="text-decoration:none"
+				th:href="@{'/prenotazioniCampo/'+${campo.id}}"
+				th:text="'Guarda le prenotazioni per' + '&nbsp;' + ${campo.matricola}+' - '+${campo.sport.nome}"></a></li>
+			</ul>
+	</div>
+
+
+	</div>
+	<footer th:replace="fragments/base.html :: fondo(home='/default')"></footer>
+</body>
+</html>

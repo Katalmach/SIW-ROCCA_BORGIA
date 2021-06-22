@@ -2,13 +2,14 @@ package it.uniroma3.siw.spring.model;
 
 import java.time.LocalDate;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Prenotazione {
@@ -18,6 +19,7 @@ public class Prenotazione {
 	private long id;
 
 	@Column(nullable=false)
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private LocalDate giorno;
 	
 	@Column(nullable=false)
@@ -26,7 +28,7 @@ public class Prenotazione {
 	@ManyToOne()
 	private Campo campo;
 
-	@ManyToOne(cascade= {CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REMOVE})
+	@ManyToOne(cascade= {})
 	private User user;
 
 	public Campo getCampo() {

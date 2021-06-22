@@ -14,6 +14,7 @@ import it.uniroma3.siw.spring.controller.validator.CredentialsValidator;
 import it.uniroma3.siw.spring.controller.validator.UserValidator;
 import it.uniroma3.siw.spring.model.Credentials;
 import it.uniroma3.siw.spring.model.User;
+import it.uniroma3.siw.spring.service.CampoService;
 import it.uniroma3.siw.spring.service.CredentialsService;
 
 @Controller
@@ -27,6 +28,9 @@ public class AuthenticationController {
 	
 	@Autowired
 	private CredentialsValidator credentialsValidator;
+
+	@Autowired
+	private CampoService campoService;
 	
 	@RequestMapping(value = "/register", method = RequestMethod.GET) 
 	public String showRegisterForm (Model model) {
@@ -50,6 +54,7 @@ public class AuthenticationController {
         
     	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     	Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+    	model.addAttribute("campi",this.campoService.tutti());
     	if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
             return "admin/home";
         }

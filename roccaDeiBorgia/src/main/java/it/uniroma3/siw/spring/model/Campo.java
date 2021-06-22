@@ -1,7 +1,5 @@
 package it.uniroma3.siw.spring.model;
 
-import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 @Entity
 public class Campo {
@@ -25,9 +22,16 @@ public class Campo {
 	@ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE})
 	private Sport sport;
 
-	@OneToMany(mappedBy ="campo")
-	private List<Prenotazione> prenotazioni;
+	@Column(length = 2000)
+	private String descrizione;
 
+	
+	@Column(nullable=false)
+	private float prezzoOrario;
+
+	@ManyToOne(cascade= {CascadeType.MERGE,CascadeType.PERSIST})
+	private Custode custode;
+	
 	//getters & setters
 
 	public String getMatricola() {
@@ -37,16 +41,6 @@ public class Campo {
 	public void setMatricola(String matricola) {
 		this.matricola = matricola;
 	}
-
-	@Column(length = 2000)
-	private String descrizione;
-
-	@Column(nullable=false)
-	private boolean disponibilita;
-
-	@Column(nullable=false)
-	private float prezzoOrario;
-
 	public long getId() {
 		return id;
 	}
@@ -78,14 +72,6 @@ public class Campo {
 
 	public void setSport(Sport sport) {
 		this.sport = sport;
-	}
-
-	public List<Prenotazione> getPrenotazioni() {
-		return prenotazioni;
-	}
-
-	public void setPrenotazioni(List<Prenotazione> prenotazioni) {
-		this.prenotazioni = prenotazioni;
 	}
 
 	public String getImage() {

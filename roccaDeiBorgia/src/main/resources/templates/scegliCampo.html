@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head
+	th:replace="fragments/base.html :: headerfiles(title=#{title.scegliCampo})">
+</head>
+<body>
+	<header th:replace="fragments/base.html :: intestazione"></header>
+	
+	<div th:object="${campo}">
+		<img th:src="@{'/images/'+'${campo.image}'}"> <span
+			th:text="${campo.matricola}"></span>
+	</div>
+
+	<div>
+		<h4 th:text="#{header.prenotazioni}"></h4>
+		<ul>
+			<li th:each="prenotazione : ${prenotazioni}"><a
+				th:href="@{'/prenotazione' + '/' + ${prenotazione.id}}"
+				th:text="|${prenotazione.giorno}-${prenotazione.ora}:00|">EsternoA1</a>
+			</li>
+		</ul>
+	</div>
+	<footer th:replace="fragments/base.html :: fondo('/default')"></footer>
+</body>
+</html>

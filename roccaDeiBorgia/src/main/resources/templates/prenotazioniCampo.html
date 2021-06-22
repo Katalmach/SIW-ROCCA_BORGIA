@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head
+	th:replace="fragments/base.html :: headerfiles(title=#{title.prenotazioniCampo})">
+</head>
+<body>
+	<header th:replace="fragments/base.html :: intestazione"></header>
+ 	
+ 			<h4 th:text="#{header.prenotazioniCampo}"></h4>
+ 	
+ 	
+ 	<div th:object="${campoSelezionato}">
+		<img th:src="@{'/images/'+${campoSelezionato.image}}"> <span
+			th:text="${campoSelezionato.matricola}"></span>
+	</div>
+
+	<div>
+	<ul class="list-group" style="align-items:center;">
+		<li class="list-group-item list-group-item-action"  th:each="prenotazione : ${prenotazioniCampo}">
+		 <a th:href="@{'/prenotazione' + '/' + ${prenotazione.id}}"
+			th:text="|${prenotazione.giorno}-${prenotazione.ora}:00|" class="list-group-item list-group-item-action"></a>
+		</li>
+	</ul>
+	</div>
+	<footer th:replace="fragments/base.html :: fondo('/default')"></footer>
+</body>
+</html>
