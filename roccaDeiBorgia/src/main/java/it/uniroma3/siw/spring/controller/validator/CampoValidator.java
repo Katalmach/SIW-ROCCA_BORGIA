@@ -30,7 +30,7 @@ public class CampoValidator implements Validator {
 			logger.debug("confermato: valori non nulli");
 			if (this.campoService.alreadyExists((Campo)o)) {
 				logger.debug("e' un duplicato");
-				errors.reject("duplicato");
+				errors.reject("campo.duplicato");
 			}
 		}
 	}

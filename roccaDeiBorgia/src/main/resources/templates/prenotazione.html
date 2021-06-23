@@ -5,7 +5,7 @@
 </head>
 <body>
 	<header th:replace="fragments/base.html :: intestazione"></header>
-		<h4 th:text="#{header.prenotazione}">...</h4>
+		<h4 class="m-5" style="text-align:center; font-size:40px;" th:text="#{header.prenotazione}"></h4>
 		<div th:if="${prenotazione}" th:object="${prenotazione}">
 
 			<table class="table">

@@ -3,35 +3,31 @@
 <head
 	th:replace="fragments/base.html :: headerfiles(title=#{title.campo})">
 </head>
-<body>
+<body class="text-center">
 	<header th:replace="fragments/base.html :: intestazione"></header>
 	<div>
-		<h4 th:text="#{header.campo}"></h4>
+		<h4 class="m-5" style="font-size:40px;" th:text="#{header.campo}"></h4>
 		<div th:if="${campo}" th:object="${campo}">
 			<div>
-				<img th:src="@{'/images/'+*{image}}">
+				<img class="p-2 img-thumbnail" style="border: 10px solid #eaeaea;" th:src="@{'/images/'+*{image}}">
 			</div>
-		
-			<div>
-				Matricola: <span th:text="*{matricola}"></span>
-			</div>
-
-			<div>
-				Descrizione: <span th:text="*{descrizione}"></span>
-			</div>
-
-			<div>
-				Prezzo orario: <span th:text="*{prezzoOrario}"></span>
-			</div>
-
-			<div>
-				Sport: <span th:text="*{sport.nome}"></span>
-			</div>
-			
-			<div>
-				Custode: <span th:text="!*{custode.nome}&nbsp;*{custode.cognome}|"></span>
-			</div>
-
+			<ul class="list-group m-5">
+				<li class="list-group-item"><span style="font-weight:bold;">Matricola:</span> <span
+					th:text="*{matricola}"></span>
+				</li>
+				<li class="list-group-item"><span style="font-weight:bold;">Descrizione: </span><span
+					th:text="*{descrizione}"></span>
+				</li>
+				<li class="list-group-item"><span style="font-weight:bold;">Prezzo orario:</span> <span
+					th:text="*{prezzoOrario}"></span>
+				</li>
+				<li class="list-group-item"><span style="font-weight:bold;">Sport: </span><span
+					th:text="*{sport.nome}"></span>
+				</li>
+				<li class="list-group-item"><span style="font-weight:bold;">Custode: </span><span
+					th:text="|*{custode.nome}&nbsp;*{custode.cognome}|"></span>
+				</li>
+			</ul>
 		</div>
 		<div th:unless="${campo}">Questo campo sportivo non esiste</div>
 	</div>

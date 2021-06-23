@@ -12,7 +12,7 @@ import it.uniroma3.siw.spring.service.PrenotazioneService;
 
 @Component
 public class PrenotazioneValidator implements Validator {
-
+	
 	@Autowired
 	private PrenotazioneService prenotazioneService;
 
@@ -23,11 +23,14 @@ public class PrenotazioneValidator implements Validator {
 
 	@Override
 	public void validate(Object o, Errors errors) {
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "campo", "required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "giorno", "required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "ora", "required");
 		
 		
 		if(!errors.hasErrors()) {
 			if(this.prenotazioneService.alreadyExists((Prenotazione)o)) {
-				errors.reject("prenotazione.duplicato");
+				errors.reject("prenotazioneduplicato");
 			}
 		}
 	}

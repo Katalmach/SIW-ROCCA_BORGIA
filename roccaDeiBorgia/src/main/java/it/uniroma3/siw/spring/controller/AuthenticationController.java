@@ -54,6 +54,7 @@ public class AuthenticationController {
         
     	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     	Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+    	
     	model.addAttribute("campi",this.campoService.tutti());
     	if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
             return "admin/home";
@@ -61,7 +62,7 @@ public class AuthenticationController {
         return "home";
     }
 	
-    @RequestMapping(value = { "/register" }, method = RequestMethod.POST)
+    @RequestMapping(value = { "/register"}, method = RequestMethod.POST)
     public String registerUser(@ModelAttribute("user") User user,
                  BindingResult userBindingResult,
                  @ModelAttribute("credentials") Credentials credentials,

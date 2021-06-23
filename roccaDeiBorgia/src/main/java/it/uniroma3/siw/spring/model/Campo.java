@@ -38,6 +38,14 @@ public class Campo {
 		return matricola;
 	}
 
+	public Custode getCustode() {
+		return custode;
+	}
+
+	public void setCustode(Custode custode) {
+		this.custode = custode;
+	}
+
 	public void setMatricola(String matricola) {
 		this.matricola = matricola;
 	}

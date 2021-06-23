@@ -3,58 +3,67 @@
 <head
 	th:replace="fragments/base.html :: headerfiles(title=#{title.formCampo})">
 </head>
-<body>
+<body class="text-center">
 	<header th:replace="fragments/base.html :: intestazione"></header>
-	<div>
-		<h4>Inserisci i dati di un campo</h4>
+	<div class="m-5">
+		<h4 th:text="#{header.campoForm}" style="font-size: 40px;"></h4>
 	</div>
-	<form th:action="@{/admin/campo}" method="POST" th:object="${campo}">
-		<div th:if="${#fields.hasGlobalErrors()}">
-			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
-		</div>
-		<div>
-			<div>
-				<span>Matricola:</span> <span><input type="text"
-					th:field="*{matricola}" /></span> <span
-					th:if="${#fields.hasErrors('matricola')}" th:errors="*{matricola}"></span>
+	<div class="form">
+		<form th:action="@{/admin/campo}" method="POST" th:object="${campo}">
+			<div th:if="${#fields.hasGlobalErrors()}">
+				<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
 			</div>
 			<div>
-				<span>Descrizione:</span> <span><input type="text"
-					th:field="*{descrizione}" /></span> <span
-					th:if="${#fields.hasErrors('descrizione')}"
-					th:errors="*{descrizione}"></span>
+				<div class="p-3">
+					<span>Matricola</span> <span><input type="text"
+						class="form-control" th:field="*{matricola}" required /></span> <span
+						th:if="${#fields.hasErrors('matricola')}" th:errors="*{matricola}"></span>
+				</div>
+				<div class="p-3">
+					<span>Descrizione</span> <span><input type="text"
+						class="form-control" th:field="*{descrizione}" required /></span> <span
+						th:if="${#fields.hasErrors('descrizione')}"
+						th:errors="*{descrizione}"></span>
+				</div>
+
+			</div>
+			<div class="p-3">
+				<span>PrezzoOrario</span> <span><input type="text"
+					class="form-control text-center" th:field="*{prezzoOrario}" required /></span> <span
+					th:if="${#fields.hasErrors('prezzoOrario')}"
+					th:errors="*{prezzoOrario}"></span>
 			</div>
 
-		</div>
-		<div>
-			<span>PrezzoOrario:</span> <span><input type="text"
-				th:field="*{prezzoOrario}" /></span> <span
-				th:if="${#fields.hasErrors('prezzoOrario')}"
-				th:errors="*{prezzoOrario}"></span>
-		</div>
+			<span>Sport</span>
+			<div>
+				<select name="sportSelezionato"
+					class="custom-select-xl rounded mb-3" required>
+					<option selected>Sport disponibili</option>
+					<option th:each="sport : ${sports}" th:value="${sport.id}"
+						th:text="${sport.nome}">
+				</select>
+			</div>
+			<span>Custode</span>
+			<div class="">
+				<select name="custodeSelezionato"
+					class="custom-select-xl rounded mb-3" required>
+					<option selected>Custodi</option>
+					<option th:each="custode : ${custodi}" th:value="${custode.id}"
+						th:text="|${custode.nome} ${custode.cognome}">
+				</select>
+			</div>
 
-	  	<div>
-			<span>Sport:</span> <select name="sportSelezionato">
-				<option th:each="sport : ${sports}" th:value="${sport.id}"
-					th:text="${sport.nome}">
-			</select>
-		</div> 
-		
-		<div>
-			<span>Custode:</span> <select name="custodeSelezionato">
-				<option th:each="custode : ${custodi}" th:value="${custode.id}"
-					th:text="|${custode.nome}${custode.cognome}|">
-			</select>
-		</div> 
-		
-		  <div>
-				<span>Immagine:</span> <input style="color:white;" type="file" th:field="*{image}"
-					accept="image/gif, image/jpeg, image/png"> 			</div>
-		
-		<div>
-			<span><button type="submit">Invio</button></span>
-		</div>
-	</form>
+			<span>Immagine</span>
+			<div>
+				<input class="btn btn-light form-control-sm rounded" type="file"
+					th:field="*{image}" accept="image/gif, image/jpeg, image/png">
+			</div>
+
+			<div class="m-5">
+				<span><button type="submit" class="btn btn-primary">Conferma</button></span>
+			</div>
+		</form>
+	</div>
 	<footer th:replace="fragments/base.html :: fondo('/default')"></footer>
 </body>
 </html>

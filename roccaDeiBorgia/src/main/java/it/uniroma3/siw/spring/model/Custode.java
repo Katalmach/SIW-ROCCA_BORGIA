@@ -74,7 +74,6 @@ public class Custode {
 
 	public Custode(String nome, String cognome, LocalDate dataDiNascita, String luogoDiNascita,
 			String email, String numeroDiTelefono) {
-		
 		this.nome = nome;
 		this.cognome = cognome;
 		this.email = email;

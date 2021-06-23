@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html xmlns:th="//http:thymeleaf.org">
 <head
-	th:replace="fragments/base.html :: headerfiles(title=#{header.prenotazione})">
+	th:replace="fragments/base.html :: headerfiles(title=#{title.prenotazioneForm})">
 </head>
-<body>
+<body class="text-center">
 	<header th:replace="fragments/base.html :: intestazione"> </header>
 
 
 	<div>
-		<p>Effettua una prenotazione</p>
+		<h4 class="m-5" style="text-align:center; font-size:40px;" th:text="#{header.prenotazioneForm}"></h4>	
 		<form th:action="@{/addPrenotazione}" method="POST"
 			th:object="${prenotazione}">
 			<div th:if="${#fields.hasGlobalErrors()}">
 				<p th:each="err : ${#fields.hasGlobalErrors()}" th:text="${err}"></p>
 			</div>
-
+		
 
 			<div>Campo:
 			<select class="form-select-lg mb-3"
-				aria-label=".form-select-sm" name="campoSelezionato">
+				aria-label=".form-select-sm" name="campoSelezionato" required>
 			
 				<option th:each="campo : ${campi}" th:value="${campo.id}"
 						th:text="|${campo.sport.nome}&nbsp;${campo.matricola}|">
@@ -27,14 +27,14 @@
 			<div class="mb-4">
 				Giorno: <label for="exampleFormControlInput1" class="form-label"></label>
 				<input type="date" th:field="*{giorno}" class="form-control-sm"
-					id="exampleFormControlInput1"> <span
+					id="exampleFormControlInput1" required> <span
 					th:if="${#fields.hasErrors('giorno')}" th:errors="*{giorno}"></span>
 			</div>
 
 			<div class="mb-4">
 				Ora: <label for="exampleFormControlInput1" class="form-label"></label>
 				<input type="text" th:field="*{ora}" class="form-control-sm"
-					id="exampleFormControlInput1"> <span
+					id="exampleFormControlInput1" required> <span
 					th:if="${#fields.hasErrors('giorno')}" th:errors="*{giorno}">
 				</span> <span>Questo valore deve essere compreso tra 9 e 22</span>
 			</div>

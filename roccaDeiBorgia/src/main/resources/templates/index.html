@@ -1,17 +1,41 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-	<head th:replace="fragments/base.html :: headerfiles(title='Rocca Borgia')"> </head>
-<body>
+<head
+	th:replace="fragments/base.html :: headerfiles(title='Rocca Borgia')">
+</head>
+<body class="text-center">
 	<header th:replace="fragments/base.html :: intestazione"></header>
-    <div>
-    	<h4 th:text="#{header.index}">Welcome Page</h4>
-		<div>
-			<a th:href="@{/login}" th:text="#{index.login}">Accedi</a>
-   		</div>
-		<div>
-			<a th:href="@{/register}" th:text="#{index.register}">Registrati</a>
-   		</div>
-    </div>
-    <footer th:replace="fragments/base.html :: fondo(home='/')"></footer>
+
+	<h4 class="mt-5" style="font-size:40px;"th:text="#{header.index}"></h4>
+	<main class="form-signin">
+		<form th:action="@{/login}" method="POST">
+			<img class="mb-2" th:src="@{/images/logoNepiFinal.jpg}" alt=""
+				width="16%" height="16%">
+			<h1 class="h3 mb-2 fw-normal">Effettua il login</h1>
+
+			<div class="form-floating mb-3 p-2" style="opacity:0.5;">
+				<input type="text" class="form-control-md border-primary rounded"
+					id="floatingInput" name="username" placeholder="Username" required>
+				<label for="floatingInput"></label>
+			</div>
+
+			<div class="form-floating mb-3 p-2" style="opacity:0.5;">
+				 <input type="password"
+					class="form-control-md border-primary rounded " id="floatingPassword"
+					name="password" placeholder="Password" required> <label
+					for="floatingPassword"></label>
+			</div>
+
+			<button class="mt-1 w-10  btn-lg btn btn-outline-primary"
+				type="submit">Accedi</button>
+
+		</form>
+		<div class="mb-5">
+			<a style="text-decoration: none;" th:href="@{/register}"
+				th:text="#{index.register}">Registrati</a>
+		</div>
+	</main>
+
+	<footer th:replace="fragments/base.html :: fondo(home='/')"></footer>
 </body>
 </html>

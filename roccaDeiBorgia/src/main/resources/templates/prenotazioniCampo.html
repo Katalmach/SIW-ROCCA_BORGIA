@@ -1,27 +1,52 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head
-	th:replace="fragments/base.html :: headerfiles(title=#{title.prenotazioniCampo})">
-</head>
-<body>
-	<header th:replace="fragments/base.html :: intestazione"></header>
- 	
- 			<h4 th:text="#{header.prenotazioniCampo}"></h4>
- 	
- 	
- 	<div th:object="${campoSelezionato}">
-		<img th:src="@{'/images/'+${campoSelezionato.image}}"> <span
-			th:text="${campoSelezionato.matricola}"></span>
-	</div>
+	<!DOCTYPE html>
+	<html xmlns:th="http://www.thymeleaf.org">
+	<head
+		th:replace="fragments/base.html :: headerfiles(title=#{title.prenotazioniCampo})">
+	</head>
+	<body class="text-center">
+		<header th:replace="fragments/base.html :: intestazione"></header>
+	 		<div class="m-5" th:object="${campoSelezionato}">
+	 			<h4  style="text-align:center; font-size:40px;"th:text="#{header.prenotazioniCampo}">
+	 			</h4>
+	 			<span  style="font-size:25px;"th:text="${campoSelezionato.matricola}"></span>
+	 	</div>
+	 	
+	 	<div th:object="${campoSelezionato}">
+	<img class="p-2 img-thumbnail" style="border: 10px solid #eaeaea;" th:src="@{'/images/'+*{image}}">
+					</div>
+	
+		<div class="mt-5 mb-5">
+					<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">Utente</th>
+						<th scope="col">ID prenotazione</th>
+						<th scope="col">Codice documento</th>
+						<th scope="col">Giorno</th>
+						<th scope="col">Ora</th>
+						<th scope="col">Campo</th>
+						<th scope="col">Custode</th>
+						<th scope="col">Importo da pagare</th>
 
-	<div>
-	<ul class="list-group" style="align-items:center;">
-		<li class="list-group-item list-group-item-action"  th:each="prenotazione : ${prenotazioniCampo}">
-		 <a th:href="@{'/prenotazione' + '/' + ${prenotazione.id}}"
-			th:text="|${prenotazione.giorno}-${prenotazione.ora}:00|" class="list-group-item list-group-item-action"></a>
-		</li>
-	</ul>
-	</div>
-	<footer th:replace="fragments/base.html :: fondo('/default')"></footer>
-</body>
-</html>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="prenotazione : ${prenotazioniCampo}" th:object="${prenotazione}">
+		
+						<td th:text="|*{user.nome}&nbsp;*{user.cognome}|"></td>
+						<td th:text="*{id}"></td>
+						<td th:text="*{user.numCI}"></td>
+						<td th:text="*{giorno}"></td>
+						<td th:text="*{ora}"></td>
+						<td th:text="|*{campo.matricola}&nbsp;*{campo.sport.nome}|"></td>
+						<td th:text="|*{campo.custode.nome}&nbsp;*{campo.custode.cognome}|"></td>
+						<td th:text="|*{campo.prezzoOrario}0&nbsp;&euro;|"></td>
+					</tr>
+				</tbody>
+			</table>
+		
+		</div>
+		<footer th:replace="fragments/base.html :: fondo('/default')"></footer>
+	</body>
+	</html>

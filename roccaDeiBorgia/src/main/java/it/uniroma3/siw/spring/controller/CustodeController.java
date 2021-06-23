@@ -26,7 +26,7 @@ public class CustodeController {
     @Autowired
     private CustodeValidator custodeValidator;
         
-    @RequestMapping(value="/addCustode", method = RequestMethod.GET)
+    @RequestMapping(value="/admin/custode", method = RequestMethod.GET)
     public String addCustode(Model model) {
     	model.addAttribute("custode", new Custode());
         return "custodeForm";
@@ -54,14 +54,14 @@ public class CustodeController {
     
     
     
-    @RequestMapping(value = "/addCustode", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/custode", method = RequestMethod.POST)
     public String addCustode(@ModelAttribute("custode") Custode custode, 
     									Model model, BindingResult bindingResult) {
     	this.custodeValidator.validate(custode, bindingResult);
         if (!bindingResult.hasErrors()) {
         	this.custodeService.inserisci(custode);
             model.addAttribute("custodi", this.custodeService.tutti());
-            return "custodi";
+            return "/admin/home";
         }
         return "custodiForm";
     }

@@ -61,7 +61,6 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter {
 
                 // logout paragraph: qui definiamo il logout
                 .and().logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 // il logout è attivato con una richiesta GET a "/logout"
                 .logoutUrl("/logout")
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))

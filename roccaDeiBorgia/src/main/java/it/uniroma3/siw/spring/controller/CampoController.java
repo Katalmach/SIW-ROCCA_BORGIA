@@ -56,14 +56,17 @@ public class CampoController {
     @RequestMapping(value = "/eliminaCampo/{id}", method = RequestMethod.GET)
     public String eliminaCampo(@PathVariable("id")Long id, Model model) {
     	this.campoService.elimina(this.campoService.campoPerId(id));
-    	model.addAttribute("custodi", this.campoService.tutti());
-    	return "custodi";
+    	model.addAttribute("campi", this.campoService.tutti());
+    	return "campi";
     }
     
     @RequestMapping(value = "/admin/campo", method = RequestMethod.POST)
     public String addCampo(@ModelAttribute("campo") Campo campo, 
-    									Model model, @RequestParam Long sportSelezionato, BindingResult bindingResult) {
+    									Model model, @RequestParam Long sportSelezionato,
+    									@RequestParam Long custodeSelezionato, 
+    									BindingResult bindingResult) {
     	campo.setSport(this.sportService.sportPerId(sportSelezionato));
+    	campo.setCustode(this.custodeService.custodePerId(custodeSelezionato));
     	this.campoValidator.validate(campo, bindingResult);
         if (!bindingResult.hasErrors()) {
         	this.campoService.inserisci(campo);

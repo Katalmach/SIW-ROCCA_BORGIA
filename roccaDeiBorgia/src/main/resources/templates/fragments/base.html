@@ -12,43 +12,41 @@
 </head>
 <body>
 	<nav th:fragment="intestazione"
-		class="navbar navbar-expand-lg navbar-light" style="background-color:rgba(0, 0, 0, 0.05);">
-		<div class="container-fluid"> 	   
-			<a class="navbar-brand" th:href="@{/default}">
-			    <img th:src="@{/images/logoFinal.jpg}" width="30" height="30" class="d-inline-block align-top" alt="">
-			Rocca dei Borgia</a>
+		class="navbar navbar-expand-lg navbar-light"
+		style="background-color: rgba(0, 0, 0, 0.05);">
+		<div class="container-fluid">
+			<a class="navbar-brand" th:href="@{/default}"> <img
+				th:src="@{/images/logoFinal.jpg}" width="30" height="30"
+				class="d-inline-block align-top" alt=""> Rocca dei Borgia
+			</a>
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarNav"
 				aria-controls="navbarNav" aria-expanded="false"
 				aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<div class="collapse navbar-collapse" style="flex-"id="navbarNav">
+			<div class="collapse navbar-collapse" style="" id="navbarNav">
 				<ul class="navbar-nav">
-
-					<li class="nav-item"><a class="nav-link active" aria-current="page" th:href="@{/campo}">Campi</a></li>
-
 					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" th:href="@{/guardaPrenotazioni}">Prenotazioni</a>
-					</li>
+						aria-current="page" th:href="@{/guardaPrenotazioni}">Prenotazioni</a></li>
+					<li class="nav-item"><a class="nav-link active"
+						aria-current="page" th:href="@{/campo}">Campi</a></li>
+					<li class="nav-item"><a class="nav-link active"
+						aria-current="page" th:href="@{/about}">Chi siamo</a></li>
+					<li class="nav-item"><a class="nav-link active"
+						aria-current="page" th:href="@{/logout}">Logout</a></li>
 
-					<li class="nav-item"><a class="nav-link active" aria-current="page" 
-					  th:href="@{/logout}">Logout</a>
-					</li>
-					
-					<li class="nav-item"><a class="nav-link active" aria-current="page" 
-					  th:href="@{/about}">Chi siamo</a>
-					</li>
 				</ul>
 			</div>
 		</div>
 	</nav>
 
-  <footer  th:fragment="fondo(home)">
-  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-    © 2021 Copyright:
-    <a class="text-reset" th:href="@{/default}">Rocca dei Borgia</a>
-  </div>
+	<footer th:fragment="fondo(home)">
+		<div class="text-center p-4"
+			style="background-color: rgba(0, 0, 0, 0.05);">
+			© 2021 Copyright: <a class="text-reset" th:href="@{/default}">Rocca
+				dei Borgia</a>
+		</div>
 	</footer>
 
 </body>

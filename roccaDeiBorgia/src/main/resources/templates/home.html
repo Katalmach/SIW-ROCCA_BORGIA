@@ -5,15 +5,27 @@
 </head>
 <body>
 	<header th:replace="fragments/base.html :: intestazione"></header>
-	<div class="d-flex bg-image m-4 justify-content-center"
-		style="opacity:0.6; background-image:url('https://www.canottiericaprera.it/images/Caprera/tennis_3.jpg'); height: 90vh;">
-		<span style=" margin-top:18.5%;"><a  class="link-flash btn btn-primary stretched-link" style= "background-color:rgba(0, 0, 0, 0.3);   font-size:50px; border:10px solid rgba(0, 0, 0, 0.05); border-style:groove; "th:href="@{/addPrenotazione}">EFFETTUA UNA PRENOTAZIONE</a></span>
+	<div
+		class="d-flex m-5 p-5 img-fluid bg-image text-center img-responsive "
+		style="flex-direction: column; flex-shrink: 1; opacity: 0.85; background-image: url('https://www.canottiericaprera.it/images/Caprera/tennis_3.jpg'); height: 100vh;">
+	
+			<span class="p-2 "style="text-shadow:1px 1.5px grey;	 font-size:24px; margin-bottom: 9%; margin-top:9%; font-weight:bold; color: rgba(205 ,205, 205, 1);">Da
+				ora, il centro polisportivo ROCCA DEI BORGIA vi permetter&#224; di
+				prenotare online i vostri campi, consultando le prenotazioni altrui
+				per verificare che il campo da prenotare sia libero. Troverete anche
+				informazioni sui campi e i relativi custodi, per informazioni, dubbi
+				o problemi di ogni genere. Il pagamento verr&#224; effettuato in contanti
+				all'arrivo in centro. </span>
+
+		<div>
+			<span><a class="rounded link-flash btn btn-primary" style="font-weight:bold; font-size: 30px; text-shadow:1.5px 2px blue; color:white;"
+				th:href="@{/addPrenotazione}">EFFETTUA UNA PRENOTAZIONE</a></span>
 		</div>
-		
+	</div>
 	<div style="display: flex; justify-content: center;">
 		<div class="card m-5" style="align-items: center; width: 18rem;"
 			th:each="campo :${campi}">
-			<img class="card-img-top" th:src="@{'/images/'+*{image}}"
+			<img class="card-img-top" th:src="@{'/images/'+ *{campo.image}}"
 				alt="immagineCampo">
 			<div class="card-body" th:object="${campo}">
 				<h5 class="card-title" th:text="*{matricola}"></h5>

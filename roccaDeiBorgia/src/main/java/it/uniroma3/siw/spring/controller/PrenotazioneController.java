@@ -87,7 +87,7 @@ public class PrenotazioneController {
 		if(!prenotBindingResult.hasErrors()) {
 			this.prenotazioneService.inserisci(prenotazione);
 			model.addAttribute("prenotazioni", this.prenotazioneService.prenotazioniPerUtente(credentials.getUser()));
-			return "guardaPrenotazioni";
+			return "prenotazioniUtente";
 		}
 		model.addAttribute("campi",this.campoService.tutti());
 		return "prenotazioneForm";
@@ -105,7 +105,7 @@ public class PrenotazioneController {
 	public String eliminaPrenotazione(@PathVariable("id") Long id, Model model) {
 		this.prenotazioneService.elimina(this.prenotazioneService.prenotazionePerId(id));
 		model.addAttribute("campi", this.campoService.tutti());
-		return "guardaPrenotazioni";
+		return "/admin/prenotazioni";
 	}
 
 
