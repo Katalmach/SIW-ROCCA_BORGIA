@@ -6,15 +6,21 @@
 <body>
 	<header th:replace="fragments/base.html :: intestazione"></header>
 	<div>
-	
-	<h4 class="m-5" style="text-align:center; font-size:40px;" th:text="#{header.guardaPrenotazioni}"></h4>
-<ul class="list-group m-5">
-  <li class="list-group-item mb-4 border"><a style="text-decoration:none" th:href="@{/prenotazioniUtente}">Guarda le tue prenotazioni</a>
-  </li>
-  <li class="list-group-item mb-4 border" th:each="campo :${campi}" th:value="${campo.id}"><a style="text-decoration:none"
+
+		<h4 class="m-5" style="text-align: center; font-size: 40px;"
+			th:text="#{header.guardaPrenotazioni}"></h4>
+		<ul class="list-group m-5">
+			<li class="list-group-item mb-4 border"><a
+				style="text-decoration: none" th:href="@{/prenotazioniUtente}">Guarda
+					le tue prenotazioni</a></li>
+			<li class="list-group-item mb-4 border" th:each="campo :${campi}"
+				th:value="${campo.id}"><a style="text-decoration: none"
 				th:href="@{'/prenotazioniCampo/'+${campo.id}}"
 				th:text="'Guarda le prenotazioni per' + '&nbsp;' + ${campo.matricola}+' - '+${campo.sport.nome}"></a></li>
-			</ul>
+		</ul>
+		
+		
+		
 	</div>
 
 

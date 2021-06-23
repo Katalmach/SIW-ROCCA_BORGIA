@@ -1,5 +1,6 @@
 package it.uniroma3.siw.spring.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,7 +13,6 @@ import it.uniroma3.siw.spring.model.Campo;
 import it.uniroma3.siw.spring.model.Prenotazione;
 import it.uniroma3.siw.spring.model.User;
 import it.uniroma3.siw.spring.repository.PrenotazioneRepository;
-import net.bytebuddy.asm.Advice.Return;
 
 
 @Service
@@ -20,10 +20,6 @@ public class PrenotazioneService {
 
 		@Autowired
 		private PrenotazioneRepository prenotazioneRepository; 
-		
-		@Autowired
-		private CampoService campoService; 
-		
 		
 		@Transactional
 		public Prenotazione inserisci(Prenotazione prenotazione) {
@@ -71,7 +67,15 @@ public class PrenotazioneService {
 
 		@Transactional
 		public List<Prenotazione> prenotazioniPerCampo(Campo campo) {
-			List<Prenotazione> prenotazioni =this.prenotazioneRepository.findByCampo(this.campoService.campoPerId(campo.getId()));
+			List<Prenotazione> prenotazioni =this.prenotazioneRepository.findByCampo(campo);
+			if(prenotazioni.size()>0)
+				return prenotazioni;
+			return null;
+		}
+		
+		@Transactional
+		public List<Prenotazione> prenotazioniPerGiorno(LocalDate giorno) {
+			List<Prenotazione> prenotazioni =this.prenotazioneRepository.findByGiorno(giorno);
 			if(prenotazioni.size()>0)
 				return prenotazioni;
 			return null;
@@ -82,6 +86,13 @@ public class PrenotazioneService {
 			return this.prenotazioneRepository.count();
 		}
 		
+		@Transactional
+		public List<Prenotazione> prenotazioniOrdinatePerCampo(User user) {
+			List<Prenotazione> prenotazioni =this.prenotazioneRepository.findByUser(user, 1);
+			if(prenotazioni.size()>0)
+				return prenotazioni;
+			return null;
+		}
 		
 	}
 

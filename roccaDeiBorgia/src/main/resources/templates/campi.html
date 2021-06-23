@@ -10,8 +10,8 @@
 		<a style="text-decoration:none;" th:href="@{/campiOrdinatiPerSport}" th:text="sport"></a>,
 	<a style="text-decoration:none;" th:href="@{/campiOrdinatiPerPrezzoOrario}" th:text="prezzo"></a>,
 	<a  style="text-decoration:none; color:grey;" th:href="@{/campiOrdinatiPerNumPrenotazioni}" th:text="|num. prenotazioni|"></a>
-	
 	</div>
+	
 		<ul class="list-group m-4" style="align-items:center;">
 		<li class="list-group-item list-group-item-action m-3 border"  style="text-align:center;" th:each="campo : ${campi}">
 				<a href="campo.html" style="text-decoration:none;"

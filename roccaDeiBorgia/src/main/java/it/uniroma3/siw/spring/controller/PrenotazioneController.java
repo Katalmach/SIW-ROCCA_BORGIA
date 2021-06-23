@@ -1,5 +1,6 @@
 package it.uniroma3.siw.spring.controller;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -105,93 +106,18 @@ public class PrenotazioneController {
 	public String eliminaPrenotazione(@PathVariable("id") Long id, Model model) {
 		this.prenotazioneService.elimina(this.prenotazioneService.prenotazionePerId(id));
 		model.addAttribute("campi", this.campoService.tutti());
-		model.addAttribute("prenotazioni", this.prenotazioneService.tutti());
+		model.addAttribute("prenotazioni", this.prenotazioneService.tutti()); 	
 		return "/admin/prenotazioniAdmin";
 	}
-
-
-
-	//	@RequestMapping(value="/addPrenotazione", method= RequestMethod.GET)
-	//	public String addPrenotazione(Model model) {
-	//		model.addAttribute("prenotazione", new Prenotazione());
-	//		model.addAttribute("campi",this.campoService.tutti());
-	//		model.addAttribute("prenotazioni", this.prenotazioneService.tutti());
-	//		return "prenotazioneIntermediaForm";
-	//	}
-	//
-	//
-	//	@RequestMapping(value ="/addPrenotazione", method= RequestMethod.POST)
-	//	public String addPrenotazione(Model model,@RequestParam Long campoSelezionato,
-	//			@ModelAttribute("prenotazione")Prenotazione prenotazione, BindingResult prenotBindingResult) {
-	//
-	//		model.addAttribute("campoSelezionato",this.campoService.campoPerId(campoSelezionato));
-	//		model.addAttribute("prenotazioniCampo",this.prenotazioneService.prenotazioniPerCampo(this.campoService.campoPerId(campoSelezionato)));
-	//		prenotazione.setCampo(this.campoService.campoPerId(campoSelezionato));
-	//		model.addAttribute("prenotazione", prenotazione);
-	//		
-	//		return "prenotazioneForm";
-	//	}
-	//
-	//	
-	//	@RequestMapping(value="/confermaPrenotazione", method=RequestMethod.POST)
-	//	public String confermaPrenotazione(Model model, @ModelAttribute("prenotazione")Prenotazione prenotazione,
-	//			BindingResult prenotBindingResult) {
-	//
-	//		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-	//		Credentials credentials = this.credentialsService.getCredentials(userDetails.getUsername());
-	//		
-	//		prenotazione.setCampo();
-	//		prenotazione.setUser(credentials.getUser());
-	//		
-	//		if(prenotazione.getCampo()!=null && prenotazione.getGiorno()!=null) {
-	//			this.prenotazioneService.inserisci(prenotazione);	
-	//			model.addAttribute("prenotazioni",this.prenotazioneService.prenotazioniPerUtente(prenotazione.getUser()));
-	//			return "prenotazioniUtente";
-	//		}
-	//		return "prenotazioneForm";
-	//	}
 	
-/// PROVA DUE
-	
-	//	@RequestMapping(value= "/addPrenotazione", method =RequestMethod.GET)
-	//	public String addPrenotazione(Model model) {
-	//		model.addAttribute("campi",this.campoService.tutti());
-	//		model.addAttribute("prenotazioni", this.prenotazioneService.tutti());
-	//		model.addAttribute("prenotazione", new Prenotazione());
-	//		return "prenotazioneIntermediaForm";
-	//
-	//	}
-	//
-	//	@RequestMapping(value="/addPrenotazione", method=RequestMethod.POST)
-	//	public String confermaPrenotazione(Model model,@ModelAttribute("prenotazione")Prenotazione prenotazione, 
-	//			@RequestParam Long campoSelezionato) {
-	//		prenotazione.setCampo(this.campoService.campoPerId(campoSelezionato));
-	//		this.prenotazioneDaSalvareService.inserisci(prenotazione);
-	//		model.addAttribute("idPrenotazione",prenotazione.getId());
-	//		model.addAttribute("prenotazioniDelGiorno",this.prenotazioneService.prenotazioniPerCampoEGiorno(
-	//				this.campoService.campoPerId(campoSelezionato),prenotazione.getGiorno()));
-	//		return "confermaPrenotazioneForm";
-	//		
-	//		
-	//	}
-	//
-	//	@RequestMapping(value="/confermaPrenotazione", method=RequestMethod.POST)
-	//	public String confermaPrenotazioneFinal(Model model,
-	//			@PathVariable("idPrenotazione")Long id,
-	//			BindingResult prenotBindingResult) {
-	//		Prenotazione prenotazione = this.prenotazioneDaSalvareService.prenotazionePerId(idPrenotazione);
-	//		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-	//		Credentials credentials = this.credentialsService.getCredentials(userDetails.getUsername());
-	//
-	//		prenotazione.setUser(credentials.getUser());
-	//		this.prenotazioneValidator.validate(prenotazione, prenotBindingResult);
-	//		if(!prenotBindingResult.hasErrors()) {
-	//			this.prenotazioneService.inserisci(prenotazione);
-	//			model.addAttribute("prenotazioni", this.prenotazioneService.prenotazioniPerUtente(credentials.getUser()));
-	//			this.prenotazioneDaSalvareService.elimina(prenotazione);
-	//			return "prenotazioniUtente";
-	//		}
-	//		return "confermaPrenotazioneForm";
-	//	}
+	@RequestMapping(value ="/prenotazioniOrdinatePerCampo", method =RequestMethod.GET)
+	public String prenotazioniOrdinatePerCampo(Model model) {
+		
+		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Credentials credentials = this.credentialsService.getCredentials(userDetails.getUsername());
 
+		model.addAttribute("prenotazioni", this.prenotazioneService.prenotazioniOrdinatePerCampo(credentials.getUser()));
+		return "prenotazioniUtente";
+	}
+	
 }
