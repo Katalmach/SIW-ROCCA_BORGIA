@@ -1,42 +1,41 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-	<head th:replace="fragments/base.html :: headerfiles(title='Rocca Borgia')"> </head>
+<head
+	th:replace="fragments/base.html :: headerfiles(title='Rocca Borgia')">
+</head>
 <body class="text-center">
 	<header th:replace="fragments/base.html :: intestazione"></header>
-    <div class="mb-5" style="font-size:25px;">
-    	<h4 class="m-3" style="font-size:40px;" th:text="#{header.menuAdmin}">Menu</h4>
-		
-		<div class="mb-5">
-			<a  style="text-decoration:none" 
-			th:href="@{/campo}">Elenco campi</a>
-   		</div>
-   		
-   		<div class="mb-5">
-			<a  style="text-decoration:none" 
-			th:href="@{/admin/campo}">Inserisci un campo</a>
-   		</div>
-   		
-   		<div class="mb-5">
-			<a  style="text-decoration:none" 
-			th:href="@{/admin/sport}">Inserisci uno sport</a>
-   		</div>
-   		
-   		<div class="mb-5">
-			<a  style="text-decoration:none" 
-			th:href="@{/sport}">Elenco sport</a>
-   		</div>
-   		
-   			<div class="mb-5">
-			<a  style="text-decoration:none" 
-			th:href="@{/admin/custode}">Inserisci i dettagli di un custode</a>
-   		</div>
-   		
-   		<div class="mb-5">
-   			<a  style="text-decoration:none" 
-   			th:href="@{/admin/prenotazioni}">Visualizza TUTTE le prenotazioni</a>
-   		</div> 
-   	
-    </div>
-    <footer th:replace="fragments/base.html :: fondo(home='/default')"></footer>
+	<div class="mb-5" style="font-size: 25px;">
+		<h4 class="m-5" style="font-size: 40px;" th:text="#{header.menuAdmin}">Menu</h4>
+		<ul class="list-group m-5 p-5">
+			<li class="list-group-item m-3 border"><a style="text-decoration: none"
+				th:href="@{/admin/campi}">Elenco campi</a><span th:text="| (${conteggioCampi})|"></span></li>
+			<li class="list-group-item m-3 border"><a style="text-decoration: none"
+				th:href="@{/admin/campo}">Inserisci un campo</a></li>
+			<li class="list-group-item m-3 border"><a style="text-decoration: none"
+				th:href="@{/admin/sport}">Inserisci uno sport</a></li>
+			<li class="list-group-item m-3 border"><a style="text-decoration: none"
+				th:href="@{/sport}">Elenco sport</a></li>
+			<li class="list-group-item m-3 border"><a style="text-decoration: none"
+				th:href="@{/admin/custode}">Inserisci i dettagli di un custode</a></li>
+			<li class="list-group-item m-3 border"><a style="text-decoration: none"
+				th:href="@{/admin/prenotazioni}">Visualizza TUTTE le
+					prenotazioni</a><span th:text="| (${conteggioPrenotazioni})|"></span></li>
+		</ul>
+		</div>
+		<div class="mb-5"></div>
+
+		<div class="mb-5"></div>
+
+		<div class="mb-5"></div>	
+
+		<div class="mb-5"></div>
+
+		<div class="mb-5"></div>
+
+		<div class="mb-5"></div>
+
+	</div>
+	<footer th:replace="fragments/base.html :: fondo(home='/default')"></footer>
 </body>
 </html>

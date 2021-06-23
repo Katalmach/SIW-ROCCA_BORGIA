@@ -1,11 +1,14 @@
 package it.uniroma3.siw.spring.service;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import it.uniroma3.siw.spring.model.Campo;
@@ -49,4 +52,28 @@ public class CampoService {
 	public void elimina(Campo campo) {
 		this.campoRepository.delete(campo);
 	}
+	
+	@Transactional
+	public Object campiOrdinatiPerSport() {
+		List<Campo> campi = (List<Campo>) this.campoRepository.findAll(1);
+		if(campi.size()>0)
+			return campi;
+		return null;
+	}
+	
+	@Transactional
+	public Object campiOrdinatiPerPrezzoOrario() {
+		List<Campo> campi = (List<Campo>) this.campoRepository.findAll(1.5);
+		if(campi.size()>0)
+			return campi;
+		return null;
+	}
+
+	public long conta() {
+		return this.campoRepository.count();
+		 
+	}
+	
+//	Collections.shuffle(campi);
+//	campi = Arrays.asList(campi.get(0),campi.get(1),campi.get(2));	
 }

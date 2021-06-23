@@ -16,6 +16,7 @@ import it.uniroma3.siw.spring.model.Credentials;
 import it.uniroma3.siw.spring.model.User;
 import it.uniroma3.siw.spring.service.CampoService;
 import it.uniroma3.siw.spring.service.CredentialsService;
+import it.uniroma3.siw.spring.service.PrenotazioneService;
 
 @Controller
 public class AuthenticationController {
@@ -31,6 +32,10 @@ public class AuthenticationController {
 
 	@Autowired
 	private CampoService campoService;
+
+	@Autowired
+	private PrenotazioneService prenotazioneService;
+
 	
 	@RequestMapping(value = "/register", method = RequestMethod.GET) 
 	public String showRegisterForm (Model model) {
@@ -56,6 +61,9 @@ public class AuthenticationController {
     	Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
     	
     	model.addAttribute("campi",this.campoService.tutti());
+		model.addAttribute("conteggioPrenotazioni", this.prenotazioneService.conta());
+		model.addAttribute("conteggioCampi", this.campoService.conta());
+
     	if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
             return "admin/home";
         }

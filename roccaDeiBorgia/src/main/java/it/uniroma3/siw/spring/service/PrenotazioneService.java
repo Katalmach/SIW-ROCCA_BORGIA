@@ -12,6 +12,7 @@ import it.uniroma3.siw.spring.model.Campo;
 import it.uniroma3.siw.spring.model.Prenotazione;
 import it.uniroma3.siw.spring.model.User;
 import it.uniroma3.siw.spring.repository.PrenotazioneRepository;
+import net.bytebuddy.asm.Advice.Return;
 
 
 @Service
@@ -76,6 +77,10 @@ public class PrenotazioneService {
 			return null;
 		}
 		
+		@Transactional
+		public long conta() {
+			return this.prenotazioneRepository.count();
+		}
 		
 		
 	}

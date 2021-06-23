@@ -8,41 +8,53 @@
 
 
 	<div>
-		<h4 class="m-5" style="text-align:center; font-size:40px;" th:text="#{header.prenotazioneForm}"></h4>	
+		<h4 class="m-5" style="text-align: center; font-size: 40px;"
+			th:text="#{header.prenotazioneForm}"></h4>
 		<form th:action="@{/addPrenotazione}" method="POST"
 			th:object="${prenotazione}">
 			<div th:if="${#fields.hasGlobalErrors()}">
 				<p th:each="err : ${#fields.hasGlobalErrors()}" th:text="${err}"></p>
 			</div>
-		
 
-			<div>Campo:
-			<select class="form-select-lg mb-3"
-				aria-label=".form-select-sm" name="campoSelezionato" required>
-			
-				<option th:each="campo : ${campi}" th:value="${campo.id}"
-						th:text="|${campo.sport.nome}&nbsp;${campo.matricola}|">
-				</select>	
+			<div style="display: flex; flex-direction: column;" class="form-row">
+				<div class="mb-4">
+					Giorno: <label for="exampleFormControlInput1" class="form-label"></label>
+					<input type="date" th:field="*{giorno}" class="form-control-sm rounded"
+						id="exampleFormControlInput1" required> <span
+						th:if="${#fields.hasErrors('giorno')}" th:errors="*{giorno}"></span>
+				</div>
+
+				<div>
+					Ora: <label for="exampleFormControlInput1" class="form-label"></label>
+					<input type="text" th:field="*{ora}" class="form-control-sm rounded"
+						id="exampleFormControlInput1" required> <span
+						th:if="${#fields.hasErrors('giorno')}" th:errors="*{giorno}">
+					</span>
+				</div>
+				 <span class="mb-4" style="font-size:14; font-weight:lighter;">*Questo valore deve essere compreso tra 9 e 22</span>
+
+			<span class="m-5" style="font-size:25px;">Seleziona il campo da prenotare</span>
 			</div>
-			<div class="mb-4">
-				Giorno: <label for="exampleFormControlInput1" class="form-label"></label>
-				<input type="date" th:field="*{giorno}" class="form-control-sm"
-					id="exampleFormControlInput1" required> <span
-					th:if="${#fields.hasErrors('giorno')}" th:errors="*{giorno}"></span>
+			<div class="d-flex justify-content-start">
+			<div class=" card m-5" th:each="campo :${campi}"
+				th:object="${campo}" style="align-items: center; width: 18rem;">
+				<img class="card-img-top" th:src="@{'/images/'+ ${campo.image}}"
+					alt="immagineCampo">
+				<div class="card-body" th:object="${campo}">
+					<h5 class="card-title" style="text-transform: uppercase; "th:text="*{matricola}"></h5>
+					<p class="card-text" th:text="|*{sport.nome}|"></p>
+					<p class="card-text" th:text="|*{prezzoOrario}0&euro;|"></p>
+					<input class="" type="radio" name="campoSelezionato"
+						th:value="${campo.id}">
+				</div>
+			</div>
 			</div>
 
-			<div class="mb-4">
-				Ora: <label for="exampleFormControlInput1" class="form-label"></label>
-				<input type="text" th:field="*{ora}" class="form-control-sm"
-					id="exampleFormControlInput1" required> <span
-					th:if="${#fields.hasErrors('giorno')}" th:errors="*{giorno}">
-				</span> <span>Questo valore deve essere compreso tra 9 e 22</span>
-			</div>
 
-
-
-			<span><button type="submit">Prenota</button></span>
+			<button class="m-5 btn w-25 btn-primary" type="submit">Prenota</button>
 		</form>
+
 	</div>
+
 </body>
 </html>

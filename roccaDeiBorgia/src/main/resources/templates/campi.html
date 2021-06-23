@@ -3,11 +3,18 @@
 <head th:replace="fragments/base.html :: headerfiles(title=#{header.campi})"> </head>
 <body>
 	<header th:replace="fragments/base.html :: intestazione"></header>
+	
 	<div>
     	<h4 class="m-5"style="text-align:center; font-size:40px;" th:text="#{header.campi}"></h4>
+		<div class="w-25 m-4 block-sm border"><span>Ordina i campi per: </span>
+		<a style="text-decoration:none;" th:href="@{/campiOrdinatiPerSport}" th:text="sport"></a>,
+	<a style="text-decoration:none;" th:href="@{/campiOrdinatiPerPrezzoOrario}" th:text="prezzo"></a>,
+	<a  style="text-decoration:none; color:grey;" th:href="@{/campiOrdinatiPerNumPrenotazioni}" th:text="|num. prenotazioni|"></a>
+	
+	</div>
 		<ul class="list-group m-4" style="align-items:center;">
 		<li class="list-group-item list-group-item-action m-3 border"  style="text-align:center;" th:each="campo : ${campi}">
-				<a href="campo.html" 
+				<a href="campo.html" style="text-decoration:none;"
 				   th:href="@{'/campo' + '/' + ${campo.id}}" 
 				   th:text="|${campo.matricola} - ${campo.sport.nome}|"></a>
 				   <span th:text="| (${campo.prezzoOrario}0&euro;/h)|"></span>

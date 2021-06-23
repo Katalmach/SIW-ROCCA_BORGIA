@@ -53,6 +53,25 @@ public class CampoController {
     		return "campi";
     }
     
+    @RequestMapping(value = "/admin/campi", method = RequestMethod.GET)
+    public String getCampiAdmin(Model model) {
+    		model.addAttribute("campi", this.campoService.tutti());
+    		return "/admin/campi";
+    }
+    
+    
+    @RequestMapping(value="/campiOrdinatiPerSport", method = RequestMethod.GET)
+    public String getCampiOrdinatiSport(Model model) {
+    	model.addAttribute("campi", this.campoService.campiOrdinatiPerSport());
+    	return "campi";
+    }
+    
+    @RequestMapping(value="/campiOrdinatiPerPrezzoOrario", method = RequestMethod.GET)
+    public String getCampiOrdinatiPrezzo(Model model) {
+    	model.addAttribute("campi", this.campoService.campiOrdinatiPerPrezzoOrario());
+    	return "campi";
+    }
+    
     @RequestMapping(value = "/eliminaCampo/{id}", method = RequestMethod.GET)
     public String eliminaCampo(@PathVariable("id")Long id, Model model) {
     	this.campoService.elimina(this.campoService.campoPerId(id));

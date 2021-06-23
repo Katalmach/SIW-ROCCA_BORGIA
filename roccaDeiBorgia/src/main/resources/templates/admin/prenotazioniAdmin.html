@@ -3,22 +3,27 @@
 <head
 	th:replace="fragments/base.html :: headerfiles(title=#{title.prenotazioniUtente})">
 </head>
-<body>
+<body class="text-center">
 	<header th:replace="fragments/base.html :: intestazione"></header>
 	<div>
-		<h4 th:text="#{header.prenotazioni}"></h4>
-		<ul>
-			<li th:each="prenotazione : ${prenotazioni}"><a
+		<h4 class="m-5" style="font-size: 40px;"
+			th:text="#{header.prenotazioniAdmin}"></h4>
+		<div class="d-flex justify-content-center">
+		<ul class=" list-group m-5 p-5 d-flex">
+		
+			<li class="list-group-item m-3 border d-flex justify-content-center" th:each="prenotazione : ${prenotazioni}"><a
+				style="text-decoration:none; font-size:20px;"
 				th:href="@{'/prenotazione' + '/' + ${prenotazione.id}}"
-				th:text="|${prenotazione.giorno}-${prenotazione.ora}:00|">	</a>
-					<form id="btnElimina"
-						th:action="@{'/eliminaPrenotazione/{id}'(id=${prenotazione.id})}"
-						method="POST" th:object="${prenotazione.id}">
-						<input type="hidden" name="_method" value="delete" />
-						<button type="submit" value="Submit">Elimina</button>
-					</form>
-		</li>
+				th:text="|${prenotazione.giorno}-${prenotazione.ora}:00|"> </a>
+				<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+				<form class="form" 
+					th:action="@{'/eliminaPrenotazione/{id}'(id=${prenotazione.id})}"
+					method="POST" th:object="${prenotazione.id}">
+					<input class="form-control-plaintext" type="hidden" name="_method" value="delete" />
+	 <button type="submit" class="btn btn-primary ">Elimina</button><div></div>
+		</form></li>
 		</ul>
+	</div>
 	</div>
 	<footer th:replace="fragments/base.html :: fondo('/default')"></footer>
 </body>

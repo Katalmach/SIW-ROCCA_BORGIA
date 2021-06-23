@@ -105,7 +105,8 @@ public class PrenotazioneController {
 	public String eliminaPrenotazione(@PathVariable("id") Long id, Model model) {
 		this.prenotazioneService.elimina(this.prenotazioneService.prenotazionePerId(id));
 		model.addAttribute("campi", this.campoService.tutti());
-		return "/admin/prenotazioni";
+		model.addAttribute("prenotazioni", this.prenotazioneService.tutti());
+		return "/admin/prenotazioniAdmin";
 	}
 
 
