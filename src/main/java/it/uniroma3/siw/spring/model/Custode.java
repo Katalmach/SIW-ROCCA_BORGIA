@@ -16,7 +16,7 @@ import javax.persistence.UniqueConstraint;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"nome","cognome","email"}))
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"nome","cognome"}))
 public class Custode {
 	
 	// attributi
@@ -37,7 +37,7 @@ public class Custode {
 	@Column(nullable = false)
 	private String luogoDiNascita;
 	
-	@Column(nullable = false, unique = true)
+	@Column(nullable = false)
 	private String email;
 	
 	@Column(nullable = false, unique = true)
