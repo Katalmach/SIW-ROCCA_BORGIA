@@ -15,7 +15,7 @@ import javax.persistence.UniqueConstraint;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = {"nome","cognome"})) // cambiamo nome perchè in postgres user e' una parola riservata
+@Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = {"nome","cognome","numCI"})) // cambiamo nome perchè in postgres user e' una parola riservata
 public class User {
 
 
@@ -29,7 +29,7 @@ public class User {
 	@Column(nullable=false)
 	private String cognome;
 
-	@Column(nullable=false)
+	@Column(nullable=false, unique=true)
 	private String numCI;
 
 	@Column(nullable = false)

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/base.html :: headerfiles(title=#{header.campi})"> </head>
+<head th:replace="fragments/base.html :: headerfiles(title=#{title.campi})"> </head>
 <body>
 	<header th:replace="fragments/base.html :: intestazione"></header>
 	
@@ -21,7 +21,7 @@
 				   <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
 				   <form class="form" 
 					th:action="@{'/eliminaCampo/{id}'(id=${campo.id})}"
-					method="POST" th:object="${campo.id}">
+					method="GET" th:object="${campo.id}">
 					<input class="form-control-plaintext" type="hidden" name="_method" value="delete" />
 	 <button type="submit" class="btn btn-primary ">Elimina</button><div></div>
 		</form>

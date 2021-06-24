@@ -1,5 +1,7 @@
 package it.uniroma3.siw.spring.model;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Campo {
@@ -32,6 +35,9 @@ public class Campo {
 	@ManyToOne(cascade= {CascadeType.MERGE,CascadeType.PERSIST})
 	private Custode custode;
 	
+	
+	@OneToMany(mappedBy="campo", cascade= {CascadeType.ALL})
+	private List<Prenotazione> prenotazioni;
 	//getters & setters
 
 	public String getMatricola() {

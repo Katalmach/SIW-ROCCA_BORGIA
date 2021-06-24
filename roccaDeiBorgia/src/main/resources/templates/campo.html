@@ -15,17 +15,18 @@
 				<li class="list-group-item"><span style="font-weight:bold;">Matricola:</span> <span
 					th:text="*{matricola}"></span>
 				</li>
-				<li class="list-group-item"><span style="font-weight:bold;">Descrizione: </span><span
-					th:text="*{descrizione}"></span>
-				</li>
 				<li class="list-group-item"><span style="font-weight:bold;">Prezzo orario:</span> <span
-					th:text="*{prezzoOrario}"></span>
+					th:text="|*{prezzoOrario}0&euro;|"></span>
 				</li>
 				<li class="list-group-item"><span style="font-weight:bold;">Sport: </span><span
 					th:text="*{sport.nome}"></span>
 				</li>
-				<li class="list-group-item"><span style="font-weight:bold;">Custode: </span><span
-					th:text="|*{custode.nome}&nbsp;*{custode.cognome}|"></span>
+				<li class="list-group-item"><span style="font-weight:bold;">Custode: </span>
+				<a style=""th:href="@{'/custode/'+*{custode.id}}" th:text="|*{custode.nome}&nbsp;*{custode.cognome}|">
+				</a>
+				</li>
+				<li class="list-group-item"><span style="font-weight:bold;">Descrizione: </span><span
+					th:text="*{descrizione}"></span>
 				</li>
 			</ul>
 		</div>

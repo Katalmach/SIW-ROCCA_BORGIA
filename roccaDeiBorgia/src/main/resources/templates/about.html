@@ -1,20 +1,68 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/base.html :: headerfiles(title=#{title.custodi})"> </head>
-<body>
+<head
+	th:replace="fragments/base.html :: headerfiles(title=#{title.about})">
+</head>
+<body class="text-center">
 	<header th:replace="fragments/base.html :: intestazione"></header>
 	<div>
-		<h3>Centro Polisportivo</h3>
-		<h3>Rocca dei Borgia</h3>
-    	<h4 th:text="#{header.custodi}"></h4>
-		<ul>
-			<li th:each="custode : ${custodi}">
-				<a  
-				   th:href="@{'/custode' + '/' + ${custode.id}}" 
-				   th:text="|${custode.nome} &nbsp; ${custode.cognome}|"></a>
-			</li>
-		</ul>
+		<h3 class="mt-5" style="font-size:40px;">Centro Polisportivo</h3>
+		<h3 class="mb-5" style="font-size:25px;">Rocca dei Borgia</h3>
+		<span class="w-25 ">Questa pagina esiste solo per consultare velocemente tutti i dati delle entit&agrave; salvate,
+		e per verificare il corretto funzionamento, visto che non ho inserito delle form di conferma quando inserisco oggetti.
+		</span> 
+		<h4 class="m-3" style="font-size:25px;"th:text="#{header.custodi}"></h4>
+		
+		<div class="m-3" th:each="custode : ${custodi}" th:object="${custode}">
+			<div>
+				<span th:text="*{nome}"></span> <span th:text="*{cognome}"> </span>
+			</div>
+			<div>
+				Data di Nascita: <span th:text="*{dataDiNascita}"> </span>
+			</div>
+			<div>
+				Luogo di nascita: <span th:text="*{luogoDiNascita}"> </span>
+			</div>
+			<div>
+				E-mail: <span th:text="*{email}"> </span>
+			</div>
+			<div>
+				Telefono: <span th:text="*{numeroDiTelefono}"> </span>
+			</div>
+
+		</div>
 	</div>
+	
+	<h4 class="m-3" style="font-size:25px;"th:text="#{header.utenti}"></h4>
+	<div class="m-3" th:each="user : ${users}" th:object="${user}">
+			<div>
+				<span th:text="*{nome}"></span> <span th:text="*{cognome}"> </span>
+			</div>
+			<div>
+				Codice documento: <span th:text="*{numCI}"></span>
+			</div>
+			<div>
+				Data di Nascita: <span th:text="*{dataDiNascita}"> </span>
+			</div>
+			<div>
+				Luogo di nascita: <span th:text="*{luogoDiNascita}"> </span>
+			</div>
+			<div>
+				E-mail: <span th:text="*{email}"> </span>
+			</div>
+		</div>
+		
+		<h4 class="m-3" style="font-size:25px;"th:text="#{header.sports}"></h4>
+	<div class="m-3" th:each="sport : ${sports}" th:object="${sport}">
+			<div>
+				<span th:text="*{nome}"></span>
+			</div>
+			<div>
+				Numero max giocatori: <span th:text="*{numGiocatoriMax}"></span>
+			</div>
+			
+		</div>
+		
 	<footer th:replace="fragments/base.html :: fondo('/default')"></footer>
 </body>
 </html>

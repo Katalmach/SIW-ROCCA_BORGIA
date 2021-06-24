@@ -10,16 +10,13 @@
 			th:text="#{header.prenotazioni}"></h4>
 	</div>
 
-	<div>
-		<h4 class="m-5" style="text-align: center; font-size: 40px;"
-			th:text="#{header.campi}"></h4>
+	
 		<div class="w-25 m-4 block-sm border">
 			<span>Ordina le prenotazioni per </span> 
 			<a style="text-decoration: none;"
 				th:href="@{/prenotazioniOrdinatePerCampo}" th:text="campo"></a>,
 			<a style="text-decoration:none;"
 				th:href="@{/prenotazioniUtente}" th:text="data"></a>
-			
 		</div>
 
 		<table class="table">
@@ -46,14 +43,12 @@
 					<td th:text="|*{campo.matricola}&nbsp;*{campo.sport.nome}|"></td>
 					<td><a style="text-decoration: none;"
 						th:href="@{'/custode/'+*{campo.custode.id}}"
-						th:text="|*{campo.custode.nome} *{campo.custode.cognome}|"></td>
+						th:text="|*{campo.custode.nome} *{campo.custode.cognome}|"></a></td>
 
 					<td th:text="|*{campo.prezzoOrario}0&nbsp;&euro;|"></td>
 				</tr>
 			</tbody>
 		</table>
-</body>
-</html>
 
 
 <footer th:replace="fragments/base.html :: fondo('/default')"></footer>

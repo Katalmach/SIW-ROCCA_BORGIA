@@ -1,33 +1,29 @@
- <!DOCTYPE html>
+
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head
 	th:replace="fragments/base.html :: headerfiles(title=#{title.custode})">
 </head>
-<body>
+<body class="text-center">
 	<header th:replace="fragments/base.html :: intestazione"></header>
 	<div>
-		<h4 th:text="#{header.custode}">...</h4>
-
+		<h4 class="m-5" style="font-size:40px;"th:text="#{header.custode}">...</h4>
 		<div th:if="${custode}" th:object="${custode}">
-
-			<div>
-				<span th:text="*{nome}"></span> <span th:text="*{cognome}"> </span>
-			</div>
-			<div>
-				Data di Nascita: <span th:text="*{dataDiNascita}"> </span>
-			</div>
-			<div>
-				Luogo di nascita: <span th:text="*{luogoDiNascita}"> </span>
-			</div>
-			<div>
-				E-mail: <span th:text="*{email}"> </span>
-			</div>
-			<div>
-				Telefono: <span th:text="*{numeroDiTelefono}"> </span>
-			</div>
-
+		<ul class="list-group m-5 p-5">
+			<li class="list-group-item m-3 p-5"><span style="border:none; text-transform:uppercase; list-style:none;  font-weight: bold;"></span>
+				<span style="text-transform:uppercase; font-weight:bold;" th:text="|*{nome} *{cognome}|"></span></li>
+			<li class="list-group-item m-3 border"><span style="font-weight: bold;">Data di nascita:
+			</span><span th:text="*{dataDiNascita}"></span></li>
+			<li class="list-group-item m-3 border"><span style="font-weight: bold;">Luogo di nascita:
+					</span> <span th:text="*{luogoDiNascita}"></span></li>
+			<li class="list-group-item m-3 border"><span style="font-weight: bold;">Email:
+			</span><span th:text="*{email}"></span></li>
+			<li class="list-group-item m-3 border"><span style="font-weight: bold;">Numero di telefono:
+			</span><span th:text="*{numeroDiTelefono}"></span></li>
+			</ul>
+		
 		</div>
-		<div th:unless="${custode}">Quest'opera non esiste</div>
+		<div th:unless="${custode}">Questo custode non esiste</div>
 	</div>
 	<footer th:replace="fragments/base.html :: fondo('/default')"></footer>
 </body>

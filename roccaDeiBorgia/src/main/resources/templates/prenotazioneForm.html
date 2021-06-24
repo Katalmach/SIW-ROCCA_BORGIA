@@ -19,35 +19,43 @@
 			<div style="display: flex; flex-direction: column;" class="form-row">
 				<div class="mb-4">
 					Giorno: <label for="exampleFormControlInput1" class="form-label"></label>
-					<input type="date" th:field="*{giorno}" class="form-control-sm rounded"
-						id="exampleFormControlInput1" required> <span
-						th:if="${#fields.hasErrors('giorno')}" th:errors="*{giorno}"></span>
+					<input type="date" th:field="*{giorno}"
+						class="form-control-sm rounded" id="exampleFormControlInput1"
+						required> 
+						<div>
+						<span th:if="${#fields.hasErrors('giorno')}"
+						 th:style="'color:red'" th:errors="*{giorno}"></span>
+					</div>
 				</div>
 
 				<div>
 					Ora: <label for="exampleFormControlInput1" class="form-label"></label>
-					<input type="text" th:field="*{ora}" class="form-control-sm rounded"
-						id="exampleFormControlInput1" required> <span
-						th:if="${#fields.hasErrors('giorno')}" th:errors="*{giorno}">
-					</span>
+					<input type="text" th:field="*{ora}"
+						class="form-control-sm rounded" id="exampleFormControlInput1"
+						required>
+					<div>
+						<span th:if="${#fields.hasErrors('ora')}" th:errors="*{ora}"
+							th:style="'color:red'"> </span>
+					</div>
 				</div>
-				 <span class="mb-4" style="font-size:14; font-weight:lighter;">*Questo valore deve essere compreso tra 9 e 22</span>
-
-			<span class="m-5" style="font-size:25px;">Seleziona il campo da prenotare</span>
+				<span class="mb-4" style="font-size: 14; font-weight: lighter;">*Questo
+					valore deve essere compreso tra 9 e 22</span> <span class="m-5"
+					style="font-size: 25px;">Seleziona il campo da prenotare</span>
 			</div>
 			<div class="d-flex justify-content-start">
-			<div class=" card m-5" th:each="campo :${campi}"
-				th:object="${campo}" style="align-items: center; width: 18rem;">
-				<img class="card-img-top" th:src="@{'/images/'+ ${campo.image}}"
-					alt="immagineCampo">
-				<div class="card-body" th:object="${campo}">
-					<h5 class="card-title" style="text-transform: uppercase; "th:text="*{matricola}"></h5>
-					<p class="card-text" th:text="|*{sport.nome}|"></p>
-					<p class="card-text" th:text="|*{prezzoOrario}0&euro;|"></p>
-					<input class="" type="radio" name="campoSelezionato"
-						th:value="${campo.id}">
+				<div class=" card m-5" th:each="campo :${campi}"
+					th:object="${campo}" style="align-items: center; width: 18rem;">
+					<img class="card-img-top" th:src="@{'/images/'+ ${campo.image}}"
+						alt="immagineCampo">
+					<div class="card-body" th:object="${campo}">
+						<h5 class="card-title" style="text-transform: uppercase;"
+							th:text="*{matricola}"></h5>
+						<p class="card-text" th:text="|*{sport.nome}|"></p>
+						<p class="card-text" th:text="|*{prezzoOrario}0&euro;|"></p>
+						<input class="" type="radio" name="campoSelezionato"
+							th:value="${campo.id}" required>
+					</div>
 				</div>
-			</div>
 			</div>
 
 

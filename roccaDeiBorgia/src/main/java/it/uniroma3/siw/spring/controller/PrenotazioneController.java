@@ -119,5 +119,14 @@ public class PrenotazioneController {
 		model.addAttribute("prenotazioni", this.prenotazioneService.prenotazioniOrdinatePerCampo(credentials.getUser()));
 		return "prenotazioniUtente";
 	}
+	  
+	  @RequestMapping(value = "/eliminaPrenotazioneAdmin/{id}", method = RequestMethod.POST)
+	  public String eliminaPrenotazioneAdmin(@PathVariable("id") Long id, Model model) {
+	    this.prenotazioneService.elimina(this.prenotazioneService.prenotazionePerId(id));
+	    model.addAttribute("campi", this.campoService.tutti());
+	    model.addAttribute("prenotazioni", this.prenotazioneService.tutti());
+	    
+	    return "/admin/prenotazioniAdmin";
+	  }
 	
 }
