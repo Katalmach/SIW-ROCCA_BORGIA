@@ -63,6 +63,6 @@ public class CustodeController {
             model.addAttribute("custodi", this.custodeService.tutti());
             return "/admin/home";
         }
-        return "custodiForm";
+        return "custodeForm";
     }
 }

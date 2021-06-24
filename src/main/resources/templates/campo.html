@@ -22,11 +22,11 @@
 					th:text="*{sport.nome}"></span>
 				</li>
 				<li class="list-group-item"><span style="font-weight:bold;">Custode: </span>
-				<a style=""th:href="@{'/custode/'+*{custode.id}}" th:text="|*{custode.nome}&nbsp;*{custode.cognome}|">
+				<a th:href="@{'/custode/'+*{custode.id}}" th:text="|*{custode.nome}&nbsp;*{custode.cognome}|">
 				</a>
 				</li>
-				<li class="list-group-item"><span style="font-weight:bold;">Descrizione: </span><span
-					th:text="*{descrizione}"></span>
+				<li class="list-group-item"><span style="font-weight:bold;">Descrizione: </span><div
+					th:text="*{descrizione}"></div>
 				</li>
 			</ul>
 		</div>

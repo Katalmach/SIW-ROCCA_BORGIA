@@ -7,13 +7,13 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.5.0</version>
-		<relativePath/>
+		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>it.uniroma3.siw</groupId>
-	<artifactId>roccaDeiBorgia</artifactId>
+	<artifactId>siw-spring-security</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>roccaDeiBorgia</name>
-	<description>Progetto per navigare un centro polisportivo e di prenotarne i campi </description>
+	<name>siw-spring-security</name>
+	<description>Demo project for Spring Boot and Security</description>
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
@@ -77,13 +77,14 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-		
-      <plugin>
-        <groupId>com.heroku.sdk</groupId>
-        <artifactId>heroku-maven-plugin</artifactId>
-        <version>3.0.3</version>
-      </plugin>
+
+			<plugin>
+				<groupId>com.heroku.sdk</groupId>
+				<artifactId>heroku-maven-plugin</artifactId>
+				<version>3.0.3</version>
+			</plugin>
 		</plugins>
 	</build>
 
 </project>
+

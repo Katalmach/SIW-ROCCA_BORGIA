@@ -38,7 +38,7 @@
 			<div>
 				<select name="sportSelezionato"
 					class="custom-select-xl rounded mb-3" required>
-					<option selected>Sport disponibili</option>
+					<option selected></option>
 					<option th:each="sport : ${sports}" th:value="${sport.id}"
 						th:text="${sport.nome}">
 				</select>
@@ -47,7 +47,7 @@
 			<div class="">
 				<select name="custodeSelezionato"
 					class="custom-select-xl rounded mb-3" required>
-					<option selected>Custodi</option>
+					<option selected></option>
 					<option th:each="custode : ${custodi}" th:value="${custode.id}"
 						th:text="|${custode.nome} ${custode.cognome}">
 				</select>

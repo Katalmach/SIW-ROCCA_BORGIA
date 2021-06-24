@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head
+	th:replace="fragments/base.html :: headerfiles(title=#{title.prenotazioniUtente})">
+</head>
+<body>
+	<header th:replace="fragments/base.html :: intestazione"></header>
+	<div class="m-5">
+		<h4 style="text-align: center; font-size: 40px;"
+			th:text="#{header.prenotazioni}"></h4>
+	</div>
+
+
+	<div class="w-25 m-4 block-sm border">
+		<span>Ordina le prenotazioni per </span> <a
+			style="text-decoration: none;"
+			th:href="@{/prenotazioniOrdinatePerCampo}" th:text="campo"></a>, <a
+			style="text-decoration: none;" th:href="@{/prenotazioniUtente}"
+			th:text="data"></a>
+	</div>
+
+	<table class="table">
+		<thead>
+			<tr>
+
+				<th scope="col">ID prenotazione</th>
+				<th scope="col">Giorno</th>
+				<th scope="col">Ora</th>
+				<th scope="col">Campo</th>
+				<th scope="col">Custode</th>
+				<th scope="col">Importo da pagare</th>
+				<th  scope="col">Elimina</th>
+
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="prenotazione : ${prenotazioni}"
+				th:object="${prenotazione}">
+
+				<td  th:text="*{id}"></td>
+				<td th:text="*{giorno}"></td>
+				<td th:text="*{ora}"></td>
+				<td th:text="|*{campo.matricola}&nbsp;*{campo.sport.nome}|"></td>
+				<td><a style="text-decoration: none;"
+					th:href="@{'/custode/'+*{campo.custode.id}}"
+					th:text="|*{campo.custode.nome} *{campo.custode.cognome}|"></a></td>
+
+				<td th:text="|*{campo.prezzoOrario}0&nbsp;&euro;|"></td>
+				<td>
+					<form 
+						th:action="@{'/eliminaPrenotazione/{id}'(id=${prenotazione.id})}"
+						method="POST" th:object="${prenotazione.id}">
+						<input class="form-control-plaintext" type="hidden" name="_method"
+							value="delete" />
+						<button type="submit" class="btn btn-primary btn-sm ">Elimina</button>
+						<div></div>
+					</form>
+				</td>
+				</form>
+			</tr>
+		</tbody>
+	</table>
+
+
+	<footer th:replace="fragments/base.html :: fondo('/default')"></footer>
+</body>
+</html>

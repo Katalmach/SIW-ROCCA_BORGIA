@@ -76,7 +76,7 @@ public class CampoController {
     public String eliminaCampo(@PathVariable("id")Long id, Model model) {
     	this.campoService.elimina(this.campoService.campoPerId(id));
     	model.addAttribute("campi", this.campoService.tutti());
-    	return "campi";
+    	return "admin/campi";
     }
     
     @RequestMapping(value = "/admin/campo", method = RequestMethod.POST)
@@ -92,7 +92,10 @@ public class CampoController {
             model.addAttribute("campi", this.campoService.tutti());
             return "campi";
         }
+        model.addAttribute("sports", this.sportService.tutti());
+    	model.addAttribute("custodi", this.custodeService.tutti());
         return "campoForm";
+        
      
     }
 }
