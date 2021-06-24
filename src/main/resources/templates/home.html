@@ -5,20 +5,24 @@
 </head>
 <body>
 	<header th:replace="fragments/base.html :: intestazione"></header>
-	<div
-		class="d-flex m-5 p-5 img-fluid bg-image text-center img-responsive "
-		style="flex-direction: column; flex-shrink: 1; opacity: 0.85; background-image: url('https://www.canottiericaprera.it/images/Caprera/tennis_3.jpg'); height: 100vh;">
-	
-			<span class="p-2 "style="text-shadow:1px 1.5px black;	 font-size:24px; margin-bottom: 6%; margin-top:6%; font-weight:bold; color: white;">Da
+		<h4 class="text-center mt-5" style="font-size:45px; font-family:sans-serif;">CENTRO POLISPORTIVO</h4>
+		<h4 class="text-center mb-5" style="font-size:30px; font-family:sans-serif;"> ROCCA DEI BORGIA</h4>
+		<div class="m-5 p-5 text-center">
+		<span class="m-5 p-5 " style="font-size:24px; font-weight:bold; color: rgb(100,100,100);">Da
 				ora, il centro polisportivo ROCCA DEI BORGIA vi permetter&#224; di
 				prenotare online i vostri campi, consultando le prenotazioni altrui
 				per verificare che il campo da prenotare sia libero. Troverete anche
 				informazioni sui campi e i relativi custodi, per informazioni, dubbi
 				o problemi di ogni genere. Il pagamento verr&#224; effettuato in contanti
 				all'arrivo in centro. </span>
-
+		</div>
+	
+	<div
+		class="d-flex m-5 p-5 img-fluid bg-image text-center img-responsive "
+		style="flex-direction: column; flex-shrink: 1; opacity: 0.85; background-image: url('https://www.canottiericaprera.it/images/Caprera/tennis_3.jpg'); height: 100vh;">
+	
 		<div>
-			<span><a class="rounded link-flash btn btn-secondary" style="font-weight:bold; font-size: 30px; text-shadow:1.5px 2px black; color:white;"
+			<span><a class="rounded link-flash btn btn-secondary" style=" margin-bottom: 19%; margin-top:19%; font-weight:bold; font-size: 30px; text-shadow:1.5px 2px black; color:white;"
 				th:href="@{/addPrenotazione}">EFFETTUA UNA PRENOTAZIONE</a></span>
 		</div>
 	</div>

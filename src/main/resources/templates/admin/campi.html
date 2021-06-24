@@ -19,11 +19,17 @@
 				   th:text="|${campo.matricola} - ${campo.sport.nome}|"></a>
 				   <span class="m-2" th:text="| (${campo.prezzoOrario}0&euro;/h)|"></span>
 				   <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-				   <form class="form" 
+				   <form class="form" style="margin-right:10px;"
 					th:action="@{'/eliminaCampo/{id}'(id=${campo.id})}"
 					method="GET" th:object="${campo.id}">
 					<input class="form-control-plaintext" type="hidden" name="_method" value="delete" />
 	 <button type="submit" class="btn btn-primary ">Elimina</button><div></div>
+		</form>
+		  <form class="form" 
+					th:action="@{'/modificaCampo/{id}'(id=${campo.id})}"
+					method="GET" th:object="${campo.id}">
+					<input class="form-control-plaintext" type="hidden" name="_method" value="delete" />
+	 <button type="submit" class="btn btn-primary ">Modifica</button><div></div>
 		</form>
 			</li>
 		</ul>
@@ -31,35 +37,3 @@
 	<footer th:replace="fragments/base.html :: fondo('/default')"></footer>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<li class="list-group-item m-3 border d-flex justify-content-center" th:each="prenotazione : ${prenotazioni}"><a
-				style="text-decoration:none; font-size:20px;"
-				th:href="@{'/prenotazione' + '/' + ${prenotazione.id}}"
-				th:text="|${prenotazione.giorno}-${prenotazione.ora}:00|"> </a>
-				<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-				
